@@ -1,6 +1,3 @@
+import App from "/src/index";
 
-import { NativeModules } from 'react-native';
-
-const { RNReactNativeSearchSelect } = NativeModules;
-
-export default RNReactNativeSearchSelect;
+export default App;
