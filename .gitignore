@@ -9,8 +9,6 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-@search-select.code-workspace  
-
 # Xcode
 #
 build/

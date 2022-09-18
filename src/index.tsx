@@ -25,44 +25,46 @@ interface Options {
 }
 
 interface SearchSelectProps {
-  options: Options[]; // array of options
-  setSelectedOptions?: Function;
-  setIsShowingList?: Function;
-  
-  setHasSelectedData?: Function;
+  // array of options
+  options: Options[]; 
+  setOptions?: Function;
+
+  // sets boolean values
+  setIsShowingList?: Function; // if the list is showing or not 
+  setHasSelectedData?: Function; // if there is any data selected
+
+  // styling
   listContainerStyle?: ViewStyle;
   itemListContainerStyle?: ViewStyle;
   containerStyle?: ViewStyle;
   inputStyle?: ViewStyle;
+
+  // texts
+  placeholder?: string;
   placeholderTextColor?: string;
-  animationList?: string;
+  searchTextColor?: string;
+
+  // animations
+  animationList?: string; // list of strings of react-native-animatable animations
   animationInput?: string;
 
   // icons
   SearchIcon: any;
   CloseIcon: any;
-
-  valueSelectedIconColor?: string;
-  valueSelectedIconSize?: number;
-  searchTextColor?: string;
-  placeholder?: string;
+  CheckboxIcon: any;
 }
 
 function SearchSelect({
   options,
-
   setIsShowingList,
-  setSelectedOptions,
+  setOptions,
   animationList,
-  valueSelectedIconColor,
   setHasSelectedData,
-  valueSelectedIconSize,
   animationInput,
   placeholder,
-
   SearchIcon,
   CloseIcon,
-  
+  CheckboxIcon,
   searchTextColor,
   placeholderTextColor,
   itemListContainerStyle = {},
@@ -142,8 +144,8 @@ function SearchSelect({
       }
     });
 
-    if (setSelectedOptions) {
-      setSelectedOptions(auxData);
+    if (setOptions) {
+      setOptions(auxData);
       setAuxOptions(auxData);
     }
     setDataList(auxData);
@@ -157,11 +159,7 @@ function SearchSelect({
         <Text style={s.itemText}>{item.label}</Text>
         {!!item.selected && (
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <Icon
-              name="ios-checkbox"
-              color={valueSelectedIconColor ? valueSelectedIconColor : 'black'}
-              size={valueSelectedIconSize ? valueSelectedIconSize : wp('6%')}
-            />
+            <CheckboxIcon/>
           </View>
         )}
       </View>
