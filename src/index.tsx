@@ -16,21 +16,19 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import Icon from 'react-native-vector-icons/Ionicons';
-
 import colors from './colors';
-import {IconProps} from "./types"
 
-interface data_Options {
+interface Options {
   key: string;
   label: string;
   selected: boolean;
 }
 
-interface data_SearchSelectProps {
-  options: data_Options[];
+interface SearchSelectProps {
+  options: Options[]; // array of options
   setSelectedOptions?: Function;
   setIsShowingList?: Function;
+  
   setHasSelectedData?: Function;
   listContainerStyle?: ViewStyle;
   itemListContainerStyle?: ViewStyle;
@@ -40,21 +38,19 @@ interface data_SearchSelectProps {
   animationList?: string;
   animationInput?: string;
 
-  // searchIcon
-  searchIcon?: React.Component<IconProps, any>;
-  searchIconColor?: string;
-  searchIconSize?: number;
-  
+  // icons
+  SearchIcon: any;
+  CloseIcon: any;
+
   valueSelectedIconColor?: string;
   valueSelectedIconSize?: number;
   searchTextColor?: string;
-  closeIconColor?: string;
-  closeIconSize?: number;
   placeholder?: string;
 }
 
 function SearchSelect({
   options,
+
   setIsShowingList,
   setSelectedOptions,
   animationList,
@@ -63,20 +59,20 @@ function SearchSelect({
   valueSelectedIconSize,
   animationInput,
   placeholder,
-  searchIconColor,
+
+  SearchIcon,
+  CloseIcon,
+  
   searchTextColor,
-  searchIconSize,
-  closeIconColor,
-  closeIconSize,
   placeholderTextColor,
   itemListContainerStyle = {},
   listContainerStyle = {},
   containerStyle = {},
   inputStyle = {},
-}: data_SearchSelectProps) {
+}: SearchSelectProps) {
   const [searchText, setSearchText] = useState('');
-  const [auxOptions, setAuxOptions] = useState<data_Options[]>(options);
-  const [dataList, setDataList] = useState<data_Options[] | false>(false);
+  const [auxOptions, setAuxOptions] = useState<Options[]>(options);
+  const [dataList, setDataList] = useState<Options[] | false>(false);
   const [canAnimate, setCanAnimate] = useState(true);
 
   useEffect(() => {
@@ -114,7 +110,7 @@ function SearchSelect({
     }
   };
 
-  const handleHasResult = (result: data_Options[]) => {
+  const handleHasResult = (result: Options[]) => {
     setDataList(result);
     if (setIsShowingList) {
       setIsShowingList(true);
@@ -134,7 +130,7 @@ function SearchSelect({
       return;
     }
 
-    let auxData: data_Options[] = [];
+    let auxData: Options[] = [];
     dataList.forEach(d => {
       if (d.key == index) {
         auxData.push({
@@ -153,7 +149,7 @@ function SearchSelect({
     setDataList(auxData);
   };
 
-  const RenderItem = (item: data_Options, index: any) => (
+  const RenderItem = (item: Options, index: any) => (
     <TouchableOpacity
       style={{...s.itemContainer, ...itemListContainerStyle}}
       onPress={() => handleSetSelectedsItem(index)}>
@@ -200,18 +196,10 @@ function SearchSelect({
                   handleClose();
                 }
               }}>
-              <Icon
-                name="ios-close-circle"
-                color={closeIconColor ? closeIconColor : 'black'}
-                size={closeIconSize ? closeIconSize : wp('6%')}
-              />
+              <CloseIcon/>
             </TouchableOpacity>
           ) : (
-            <Icon
-              name="ios-search-outline"
-              color={searchIconColor ? searchIconColor : 'black'}
-              size={searchIconSize ? searchIconSize : wp('6%')}
-            />
+            <SearchIcon/>
           )}
         </View>
         <TextInput
