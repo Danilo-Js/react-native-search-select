@@ -6,6 +6,8 @@
   Select objects from a searchbar
 </h4>
 
+</br>
+
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Danilo-Js/react-native-search-select">
 
@@ -38,43 +40,37 @@
 
 ## :rocket: Getting Started
 
-1. Install [react-native-vector-icons](https://reactnavigation.org/docs/4.x/getting-started/) and the icon sources you want. In the main example, we use `$ Ionicons`
+1. Install [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation) and the icon sources you want. In the main example, we use `Ionicons`. You can see all the sources and its icons [here](https://oblador.github.io/react-native-vector-icons/)
 
-   You can see all the sources and its icons [here](https://oblador.github.io/react-native-vector-icons/)
+2. Install this library. You can use `$ yarn add react-native-search-select` or `$ npm install react-native-search-select`
+   
 
 ## :information_source: Usage
 
 ```js
-import SearchSelect from "react-native-dynamic-search-select";
+import SearchSelect from "react-native-search-select";
 ```
 
 ### Configuration - Props
 
-| Property              |    Type    |     Default      | Description                                                              |
+| Property              |    Type    |     Required      | Description                                                              |
 | --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| style                 | ViewStyle  |     default      | set or override the style object for the main search view                |
-| darkMode              |  boolean   |      false       | enable the dark mode                                                     |
-| onChangeText          |  function  |     function     | set your own function for the onChangeText logic                         |
-| onPress               |  function  |     function     | set your own function for the onPress functionality                      |
-| onSearchPress         |  function  |     function     | set your own function for the **search** button's onPress functionality  |
-| onClearPress          |  function  |     function     | set your own function for the **clear** button's onPress functionality   |
-| onBlur                |  function  |     function     | set your own function for the text input's onBlur functionality          |
-| onFocus               |  function  |     function     | set your own function for the text input's onBlur functionality          |
-| textInputStyle        | TextStyle  |     default      | set or override the style object for the text input                      |
-| searchIconImageStyle  | ImageStyle |     default      | set or override the style object for the search icon image style         |
-| clearIconImageStyle   | ImageStyle |     default      | set or override the style object for the clear icon image style          |
-| ImageComponent        | component  |      Image       | set your own Image component instead of react-native's default Image one |
-| searchIconComponent   | component  |     default      | set your own component instead of Icon for the **search** component      |
-| clearIconComponent    | component  |     default      | set your own component instead of Icon for the **clear** component       |
-| searchIconImageSource |  ISource   |     default      | change the search icon image source                                      |
-| clearIconImageSource  |  ISource   |     default      | change the clear icon image source                                       |
-| clearIconImageSource  |  ISource   |     default      | change the clear icon image source                                       |
-| placeholder           |   string   | "Search here..." | set your own placeholder string                                          |
-| placeholderTextColor  |   color    |    undefined     | set placeholder text color                                               |
-| spinnerColor          |   color    |     #fdfdfd      | change the spinner color                                                 |
-| spinnerSize           |   number   |     default      | change the spinner size                                                  |
-| SpinnerType           | component  |      Circle      | change the spinner type                                                  |
-| spinnerVisibility     |  boolean   |      false       | change the spinner visibility                                            |
+| options               | array of { key: string; label: string; selected: boolean }  |     true      | array of items to search and select   |
+| setOptions            |  function  |     .       | function that set the value of options array   |
+| setIsShowingList      |  function  |     .     | function that sets a boolean value that says if the list is showing or not |
+| setHasSelectedData    |  function  |     .     | function that sets a boolean value that says if there is any data selected |
+| listContainerStyle    |  ViewStyle  |     .     | .  |
+| itemListContainerStyle|  ViewStyle  |     .     | .  |
+| containerStyle        |  ViewStyle  |     .     | .  |
+| inputStyle            |  ViewStyle  |     .     | .  |
+| placeholder           | String | . | . |
+| placeholderTextColor   | String | . | . |
+| searchTextColor        | String  | . | . |
+| animationList   | String  | . | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the list |
+| animationInput    | String  | . | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the input |
+| SearchIcon |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | . | . |
+| CloseIcon  |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component     | . | . |
+| CheckboxIcon  |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component     | . | . |
 
 ## :memo: License
 
