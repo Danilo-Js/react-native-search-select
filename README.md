@@ -26,8 +26,6 @@
   <img alt="Repository forks" src="https://img.shields.io/github/forks/Danilo-Js/react-native-search-select">
   
   <img alt="Repository stars" src="https://img.shields.io/github/stars/Danilo-Js/react-native-search-select">
-  
-  <img alt="Repository license" src="https://img.shields.io/github/license/Danilo-Js/react-native-search-select">
 </p>
 
 <p align="center" direction="row">
