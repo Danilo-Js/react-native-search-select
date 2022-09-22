@@ -1,7 +1,7 @@
 {
   "name": "react-native-search-select",
-  "version": "0.0.1",
-  "description": "An animated compononent so you can search and select objects",
+  "version": "1.2.1",
+  "description": "An animated component so you can search and select objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -23,9 +23,9 @@
     "react-native-responsive-screen": "^1.4.2"
   },
   "peerDependencies": {
-    "react": "ˆ16.3.2",
-    "react-native": "^0.41.2",
-    "react-native-vector-icons": "ˆ9.0.0"
+    "react": "*", 
+    "react-native": "*",
+    "react-native-vector-icons": "*"
   },
   "devDependencies": {
     "typescript": "^4.8.3"

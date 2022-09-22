@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, {useEffect, useState} from 'react';
+import * as React from 'react';
 import {
   View,
   Text,
@@ -72,12 +72,12 @@ function SearchSelect({
   containerStyle = {},
   inputStyle = {},
 }: SearchSelectProps) {
-  const [searchText, setSearchText] = useState('');
-  const [auxOptions, setAuxOptions] = useState<Options[]>(options);
-  const [dataList, setDataList] = useState<Options[] | false>(false);
-  const [canAnimate, setCanAnimate] = useState(true);
+  const [searchText, setSearchText] = React.useState('');
+  const [auxOptions, setAuxOptions] = React.useState<Options[]>(options);
+  const [dataList, setDataList] = React.useState<Options[] | false>(false);
+  const [canAnimate, setCanAnimate] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!dataList) {
       return;
     }
@@ -176,7 +176,7 @@ function SearchSelect({
         data={dataList as any}
         extraData={dataList}
         renderItem={({item, index}: any) => RenderItem(item, index)}
-        keyExtractor={item => item.key}
+        keyExtractor={(item: any) => item.key}
       />
     </Animated.View>
   );
@@ -201,7 +201,7 @@ function SearchSelect({
           )}
         </View>
         <TextInput
-          onChangeText={text => handleSearch(text)}
+          onChangeText={(text: string) => handleSearch(text)}
           style={{
             ...s.inputStyle,
             ...inputStyle,
