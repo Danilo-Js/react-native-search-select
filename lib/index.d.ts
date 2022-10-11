@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ViewStyle } from 'react-native';
 interface Options {
     key: string;
@@ -19,9 +18,16 @@ interface SearchSelectProps {
     searchTextColor?: string;
     animationList?: string;
     animationInput?: string;
-    SearchIcon: any;
-    CloseIcon: any;
-    CheckboxIcon: any;
+    IconSource: any;
+    searchIcon: string;
+    closeIcon: string;
+    checkboxIcon: string;
+    valueSelectedIconColor?: string;
+    valueSelectedIconSize?: number;
+    closeIconColor?: string;
+    closeIconSize?: number;
+    searchIconColor?: string;
+    searchIconSize?: number;
 }
-declare function SearchSelect({ options, setIsShowingList, setOptions, animationList, setHasSelectedData, animationInput, placeholder, SearchIcon, CloseIcon, CheckboxIcon, searchTextColor, placeholderTextColor, itemListContainerStyle, listContainerStyle, containerStyle, inputStyle, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ options, setIsShowingList, setOptions, animationList, setHasSelectedData, animationInput, placeholder, IconSource, searchIcon, closeIcon, checkboxIcon, valueSelectedIconColor, valueSelectedIconSize, closeIconColor, closeIconSize, searchIconColor, searchIconSize, searchTextColor, placeholderTextColor, itemListContainerStyle, listContainerStyle, containerStyle, inputStyle, }: SearchSelectProps): JSX.Element;
 export default SearchSelect;
