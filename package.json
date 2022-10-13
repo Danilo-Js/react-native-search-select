@@ -8,7 +8,7 @@
     "lib/**/*"
   ],
   "scripts": {
-    "copyToTest": "rm -rf ../teste/node_modules/react-native-search-select/lib && cp -r lib ../teste/node_modules/react-native-search-select/",
+    "compile": "npx tsc && rm -rf ../teste/node_modules/react-native-search-select/lib && cp -r lib ../teste/node_modules/react-native-search-select/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
