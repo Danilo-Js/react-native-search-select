@@ -21,13 +21,13 @@ interface SearchSelectProps {
     IconSource: any;
     searchIcon: string;
     closeIcon: string;
-    valueSelectedIcon: string;
-    valueSelectedIconColor?: string;
-    valueSelectedIconSize?: number;
+    optionSelectedIcon: string;
+    optionSelectedIconColor?: string;
+    optionSelectedIconSize?: number;
     closeIconColor?: string;
     closeIconSize?: number;
     searchIconColor?: string;
     searchIconSize?: number;
 }
-declare function SearchSelect({ options, setIsShowingList, setOptions, animationList, setHasSelectedOptions, animationInput, placeholder, IconSource, searchIcon, closeIcon, valueSelectedIcon, valueSelectedIconColor, valueSelectedIconSize, closeIconColor, closeIconSize, searchIconColor, searchIconSize, searchTextColor, placeholderTextColor, itemListContainerStyle, listContainerStyle, containerStyle, inputStyle, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ options, setIsShowingList, setOptions, animationList, setHasSelectedOptions, animationInput, placeholder, IconSource, searchIcon, closeIcon, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeIconColor, closeIconSize, searchIconColor, searchIconSize, searchTextColor, placeholderTextColor, itemListContainerStyle, listContainerStyle, containerStyle, inputStyle, }: SearchSelectProps): JSX.Element;
 export default SearchSelect;
