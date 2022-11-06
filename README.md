@@ -53,22 +53,22 @@ import SearchSelect from "react-native-search-select";
 
 | Property              |    Type    |     Required      | Description                                                              |
 | --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| options               | array of { key: string; label: string; selected: boolean }  |     true      | array of items to search and select   |
-| setOptions            |  function  |     .       | function that set the value of options array   |
-| setIsShowingList      |  function  |     .     | function that sets a boolean value that says if the list is showing or not |
-| setHasSelectedData    |  function  |     .     | function that sets a boolean value that says if there is any data selected |
-| listContainerStyle    |  ViewStyle  |     .     | .  |
-| itemListContainerStyle|  ViewStyle  |     .     | .  |
-| containerStyle        |  ViewStyle  |     .     | .  |
-| inputStyle            |  ViewStyle  |     .     | .  |
-| placeholder           | String | . | . |
-| placeholderTextColor   | String | . | . |
-| searchTextColor        | String  | . | . |
-| animationList   | String  | . | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the list |
-| animationInput    | String  | . | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the input |
-| SearchIcon |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | . | . |
-| CloseIcon  |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component     | . | . |
-| CheckboxIcon  |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component     | . | . |
+| options               | array of { key: string; label: string; selected: boolean }  |     True      | array of items to search and select   |
+| setOptions            |  function  |     False       | function that set the value of options array   |
+| setIsShowingList      |  function  |     False     | function that sets a boolean value that says if the list is showing or not |
+| setHasSelectedData    |  function  |     False     | function that sets a boolean value that says if there is any data selected |
+| searchContainerStyle    |  ViewStyle  |     False     | style of the View that wraps the searchBar  |
+| itemListContainerStyle|  ViewStyle  |     False     | style of the View that wraps individually the result of the search  |
+| inputStyle            |  ViewStyle  |     False     | style of the searchbar TextInput   |
+| placeholder           | String | False | placeholder of the searchbar TextInput  |
+| placeholderTextColor   | String | False | color of the placeholder of the searchbar TextInput |
+| searchTextColor        | String  | False | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
+| animationList   | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the list |
+| animationInput    | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the input |
+| IconSource |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | True | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source |
+| searchIcon |  String   | True | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
+| closeIcon  |  String     | True | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
+| optionSelectedIcon  |  String | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item |
 
 ## :memo: License
 
