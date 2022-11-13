@@ -31,6 +31,7 @@
 <p align="center" direction="row">
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#scroll-props">Props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
@@ -49,26 +50,51 @@
 import SearchSelect from "react-native-search-select";
 ```
 
-### Configuration - Props
+## :scroll: Props
+
+### Configuration props
 
 | Property              |    Type    |     Required      | Description                                                              |
 | --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
+| multipleSelect        | Boolean |     True      | if the search should allow to select multiple options or not   |
+| onSelectOption        | Boolean |     True only if multipleSelect is false | if the search should allow to select multiple options or not   |
 | options               | array of { key: string; label: string; selected: boolean }  |     True      | array of items to search and select   |
 | setOptions            |  function  |     False       | function that set the value of options array   |
 | setIsShowingList      |  function  |     False     | function that sets a boolean value that says if the list is showing or not |
-| setHasSelectedData    |  function  |     False     | function that sets a boolean value that says if there is any data selected |
+| setHasSelectedOption    |  function  |     False     | function that sets a boolean value that says if there is any option selected |
+
+### Styling props
+
+| Property              |    Type    |     Required      | Description                                                              |
+| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
 | searchContainerStyle    |  ViewStyle  |     False     | style of the View that wraps the searchBar  |
 | itemListContainerStyle|  ViewStyle  |     False     | style of the View that wraps individually the result of the search  |
 | inputStyle            |  ViewStyle  |     False     | style of the searchbar TextInput   |
 | placeholder           | String | False | placeholder of the searchbar TextInput  |
 | placeholderTextColor   | String | False | color of the placeholder of the searchbar TextInput |
 | searchTextColor        | String  | False | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
+
+### Animation props
+
+| Property              |    Type    |     Required      | Description                                                              |
+| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
 | animationList   | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the list |
 | animationInput    | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the input |
+
+### Icon props
+
+| Property              |    Type    |     Required      | Description                                                              |
+| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
 | IconSource |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | True | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source |
-| searchIcon |  String   | True | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
-| closeIcon  |  String     | True | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
+| searchIcon |  String   | False | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
+| searchIconColor  |  String  |   True only if searchIcon is true   | color of the icon that represent the search |
+| searchIconSize  |  Number  |  True only if searchIcon is true  | size of the icon that represent the search  |
+| closeIcon  |  String     | False | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
+| closeIconColor  |  String  |   True only if closeIcon is true   | color of the icon that represent closing the search |
+| closeIconSize  |  Number  |  True only if closeIcon is true  | size of the icon that represent closing the search  |
 | optionSelectedIcon  |  String | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item |
+| optionSelectedIconColor  |  String  |  True only if optionSelectedIcon is true  | color of the icon when the option is selected  |
+| optionSelectedIconSize  |  Number  |     True only if optionSelectedIcon is true     | size of the icon when the option is selected  |
 
 ## :memo: License
 
