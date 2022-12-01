@@ -61,7 +61,7 @@ import SearchSelect from "react-native-search-select";
 | options               | array of { key: string; label: string; selected: boolean }  |     True      | array of items to search and select   |
 | setOptions            |  function  |     False       | function that set the value of options array   |
 | setIsShowingList      |  function  |     False     | function that sets a boolean value that says if the list is showing or not |
-| setHasSelectedOption    |  function  |     False     | function that sets a boolean value that says if there is any option selected |
+| setHasSelectedOptions    |  function  |     False     | function that sets a boolean value that says if there is any option selected |
 
 ### Styling props
 
