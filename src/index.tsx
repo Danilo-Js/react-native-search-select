@@ -25,70 +25,86 @@ interface Options {
 }
 
 interface SearchSelectProps {
-  // array of options
+  // configuration
+  multipleSelect: boolean;
+  onSelectOption?: Function; // throw error in case multipleSelect = {true} and onSelectOption = undefined | null
   options: Options[]; 
   setOptions?: Function;
-
-  // sets boolean values
-  setIsShowingList?: Function; // if the list is showing or not 
-  setHasSelectedOptions?: Function; // if there is any data selected
+  setIsShowingList?: Function;  
+  setHasSelectedOptions?: Function;
 
   // styling
   searchContainerStyle?: ViewStyle;
   itemListContainerStyle?: ViewStyle;
   inputStyle?: ViewStyle;
-
-  // texts
   placeholder?: string;
   placeholderTextColor?: string;
   searchTextColor?: string;
 
-  // animations
-  animationList?: string; // list of strings of react-native-animatable animations
+  // animation
+  animationList?: string;
   animationInput?: string;
 
-  // icons
+  // icon
   IconSource: any;
-  searchIcon: string;
-  closeIcon: string;
-  optionSelectedIcon: string;
-
-  optionSelectedIconColor?: string;
-  optionSelectedIconSize?: number;
-  closeIconColor?: string;
-  closeIconSize?: number;
-  searchIconColor?: string; 
-  searchIconSize?: number;
+  searchIcon?: string; // create edge case in case not send a name icon
+  searchIconColor?: string; // throw error in case searchIcon != '' | null | undefined and searchIconColor == undefined | null | ''
+  searchIconSize?: number; // throw error in case searchIcon != '' | null | undefined and searchIconSize == undefined | null
+  closeIcon: string; // create edge case in case not send a name icon
+  closeIconColor?: string; // throw error in case closeIcon != '' | null | undefined and closeIconColor == undefined | null | ''
+  closeIconSize?: number; // throw error in case closeIcon != '' | null | undefined and closeIconSize == undefined | null
+  optionSelectedIcon: string; // create edge case in case not send a name icon
+  optionSelectedIconColor?: string; // throw error in case optionSelectedIcon != '' | null | undefined and optionSelectedIconColor == undefined | null | ''
+  optionSelectedIconSize?: number; // throw error in case optionSelectedIcon != '' | null | undefined and optionSelectedIconSize == undefined | null
 }
 
 function SearchSelect({
+  // configuration
+  multipleSelect,
+  onSelectOption,
   options,
-  setIsShowingList,
   setOptions,
-  animationList,
+  setIsShowingList,
   setHasSelectedOptions,
-  animationInput,
+
+  // styling
+  searchContainerStyle = {},
+  itemListContainerStyle = {},
+  inputStyle = {},
   placeholder,
+  placeholderTextColor,
+  searchTextColor,
+
+  // animation
+  animationList,
+  animationInput,
+
+  // icon
   IconSource,
   searchIcon,
+  searchIconColor,
+  searchIconSize,
   closeIcon,
+  closeIconColor,
+  closeIconSize,
   optionSelectedIcon,
   optionSelectedIconColor,
   optionSelectedIconSize,
-  closeIconColor,
-  closeIconSize,
-  searchIconColor,
-  searchIconSize,
-  searchTextColor,
-  placeholderTextColor,
-  itemListContainerStyle = {},
-  searchContainerStyle = {},
-  inputStyle = {},
 }: SearchSelectProps) {
   const [searchText, setSearchText] = React.useState('');
   const [auxOptions, setAuxOptions] = React.useState<Options[]>(options);
   const [dataList, setDataList] = React.useState<Options[] | false>(false);
   const [canAnimate, setCanAnimate] = React.useState(true);
+
+  React.useEffect(() => {
+    let errors: String = '';
+    if (multipleSelect === false && onSelectOption === undefined || null) {
+      errors += '-> If multipleSelect is true, then you have to send a onSelectOption function. Otherwise nothing will happen when you select a option\n'
+    }
+    if (errors !== '') {
+      console.log('\n PROP ERRORS at RN-Search-Select \n' + errors); // try to make this error shows properly, then add all other errors
+    }
+  }, []);
 
   React.useEffect(() => {
     if (!dataList) {
