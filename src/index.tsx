@@ -27,7 +27,7 @@ interface Options {
 interface SearchSelectProps {
   // configuration
   multipleSelect: boolean;
-  onSelectOption?: Function; // throw error in case multipleSelect = {true} and onSelectOption = undefined | null
+  onSelectOption?: Function;
   options: Options[]; 
   setOptions?: Function;
   setIsShowingList?: Function;  
@@ -48,14 +48,14 @@ interface SearchSelectProps {
   // icon
   IconSource: any;
   searchIcon?: string; // create edge case in case not send a name icon
-  searchIconColor?: string; // throw error in case searchIcon != '' | null | undefined and searchIconColor == undefined | null | ''
-  searchIconSize?: number; // throw error in case searchIcon != '' | null | undefined and searchIconSize == undefined | null
+  searchIconColor?: string;
+  searchIconSize?: number;
   closeIcon: string; // create edge case in case not send a name icon
-  closeIconColor?: string; // throw error in case closeIcon != '' | null | undefined and closeIconColor == undefined | null | ''
-  closeIconSize?: number; // throw error in case closeIcon != '' | null | undefined and closeIconSize == undefined | null
+  closeIconColor?: string;
+  closeIconSize?: number;
   optionSelectedIcon: string; // create edge case in case not send a name icon
-  optionSelectedIconColor?: string; // throw error in case optionSelectedIcon != '' | null | undefined and optionSelectedIconColor == undefined | null | ''
-  optionSelectedIconSize?: number; // throw error in case optionSelectedIcon != '' | null | undefined and optionSelectedIconSize == undefined | null
+  optionSelectedIconColor?: string;
+  optionSelectedIconSize?: number;
 }
 
 function SearchSelect({
@@ -99,10 +99,10 @@ function SearchSelect({
   React.useEffect(() => {
     let errors: String = '';
     if (multipleSelect === false && onSelectOption === undefined || null) {
-      errors += '-> If multipleSelect is true, then you have to send a onSelectOption function. Otherwise nothing will happen when you select a option\n'
+      errors += '-> If multipleSelect is true, then you have to send the onSelectOption function. Otherwise nothing will happen when you select a option.\n'
     }
     if (errors !== '') {
-      console.log('\n PROP ERRORS at RN-Search-Select \n' + errors); // try to make this error shows properly, then add all other errors
+      console.log('-- PROP ERRORS at RN-Search-Select -- \n' + errors); // try to make this error shows properly, then add all other errors
     }
   }, []);
 
@@ -157,6 +157,9 @@ function SearchSelect({
   };
 
   const handleSetSelectedsItem = (index: string) => {
+    // action to onSelectItem when MultipleSelect is false
+    // then add a renderItem optional prop to when the item is selected and when it's not
+
     if (!dataList) {
       return;
     }
@@ -188,11 +191,11 @@ function SearchSelect({
         <Text style={s.itemText}>{item.label}</Text>
         {!!item.selected && (
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <IconSource
+            {!!optionSelectedIcon && <IconSource
               name={optionSelectedIcon}
               color={optionSelectedIconColor ? optionSelectedIconColor : 'black'}
               size={optionSelectedIconSize ? optionSelectedIconSize : wp('6%')}
-            />
+            />}
           </View>
         )}
       </View>
@@ -219,7 +222,7 @@ function SearchSelect({
       style={{flex: 1, flexDirection: 'column', ...searchContainerStyle}}>
       <View style={{...s.inputContainer, ...searchContainerStyle}}>
         <View style={{paddingTop: wp('2%')}}>
-          {dataList ? (
+          {dataList && !!closeIcon ? (
             <TouchableOpacity
               onPress={() => {
                 if (dataList) {
@@ -232,7 +235,7 @@ function SearchSelect({
                 size={closeIconSize ? closeIconSize : wp('6%')}
               />
             </TouchableOpacity>
-          ) : (
+          ) : !!searchIcon && (
             <IconSource
               name={searchIcon}
               color={searchIconColor ? searchIconColor : 'black'}
