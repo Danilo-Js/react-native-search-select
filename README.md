@@ -87,14 +87,14 @@ import SearchSelect from "react-native-search-select";
 | --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
 | IconSource |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | True | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source |
 | searchIcon |  String   | False | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
-| searchIconColor  |  String  |   True only if searchIcon has a value | color of the icon that represent the search |
-| searchIconSize  |  Number  |  False  | size of the icon that represent the search  |
+| searchIconColor  |  String  |   False | color of the icon that represent the search. Default is 'black' |
+| searchIconSize  |  Number  |  False  | size of the icon that represent the search. Default is 6% of the width  |
 | closeIcon  |  String     | False | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
-| closeIconColor  |  String  |   True only if closeIcon has a value   | color of the icon that represent closing the search |
-| closeIconSize  |  Number  |  False  | size of the icon that represent closing the search  |
+| closeIconColor  |  String  |   False   | color of the icon that represent closing the search. Default is 'black' |
+| closeIconSize  |  Number  |  False  | size of the icon that represent closing the search. Default is 6% of the width  |
 | optionSelectedIcon  |  String | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item |
-| optionSelectedIconColor  |  String  |  True only if optionSelectedIcon has a value  | color of the icon when the option is selected  |
-| optionSelectedIconSize  |  Number  |     False     | size of the icon when the option is selected  |
+| optionSelectedIconColor  |  String  |  False  | color of the icon when the option is selected. Default is 'black'  |
+| optionSelectedIconSize  |  Number  |     False     | size of the icon when the option is selected. Default is 6% of the width  |
 
 ## :memo: License
 
