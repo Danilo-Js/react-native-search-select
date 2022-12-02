@@ -97,16 +97,6 @@ function SearchSelect({
   const [canAnimate, setCanAnimate] = React.useState(true);
 
   React.useEffect(() => {
-    let errors: String = '';
-    if (multipleSelect === false && onSelectOption === undefined || null) {
-      errors += '-> If multipleSelect is true, then you have to send the onSelectOption function. Otherwise nothing will happen when you select a option.\n'
-    }
-    if (errors !== '') {
-      console.log('-- PROP ERRORS at RN-Search-Select -- \n' + errors); // try to make this error shows properly, then add all other errors
-    }
-  }, []);
-
-  React.useEffect(() => {
     if (!dataList) {
       return;
     }
@@ -157,10 +147,16 @@ function SearchSelect({
   };
 
   const handleSetSelectedsItem = (index: string) => {
-    // action to onSelectItem when MultipleSelect is false
-    // then add a renderItem optional prop to when the item is selected and when it's not
-
     if (!dataList) {
+      return;
+    }
+
+    if (onSelectOption) {
+      const selectedOption = dataList.find(value => value.key == index);
+      onSelectOption(index, selectedOption)
+    }
+
+    if (!multipleSelect) {
       return;
     }
 
