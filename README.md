@@ -88,13 +88,13 @@ import SearchSelect from "react-native-search-select";
 | IconSource |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | True | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source |
 | searchIcon |  String   | False | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
 | searchIconColor  |  String  |   True only if searchIcon has a value | color of the icon that represent the search |
-| searchIconSize  |  Number  |  True only if searchIcon has a value  | size of the icon that represent the search  |
+| searchIconSize  |  Number  |  False  | size of the icon that represent the search  |
 | closeIcon  |  String     | False | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
 | closeIconColor  |  String  |   True only if closeIcon has a value   | color of the icon that represent closing the search |
-| closeIconSize  |  Number  |  True only if closeIcon has a value  | size of the icon that represent closing the search  |
+| closeIconSize  |  Number  |  False  | size of the icon that represent closing the search  |
 | optionSelectedIcon  |  String | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item |
 | optionSelectedIconColor  |  String  |  True only if optionSelectedIcon has a value  | color of the icon when the option is selected  |
-| optionSelectedIconSize  |  Number  |     True only if optionSelectedIcon has a value     | size of the icon when the option is selected  |
+| optionSelectedIconSize  |  Number  |     False     | size of the icon when the option is selected  |
 
 ## :memo: License
 
