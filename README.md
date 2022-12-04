@@ -49,31 +49,32 @@
 1. Install [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation) and the icon sources you want. In the main example, we use `Ionicons`. You can see all the sources and its icons [here](https://oblador.github.io/react-native-vector-icons/)
 
 2. Install this library. You can use `$ yarn add react-native-search-select` or `$ npm install react-native-search-select`
-   
 
 ## :information_source: Usage
 
 1. Import the library
+
 ```js
 import SearchSelect from "react-native-search-select";
 ```
 
 2. Create the options state
+
 ```js
 const [options, setOptions] = useState([
   {
-    key: '0',
-    label: 'Option 1',
+    key: "0",
+    label: "Option 1",
     selected: false,
   },
   {
-    key: '1',
-    label: 'Option 2',
+    key: "1",
+    label: "Option 2",
     selected: false,
   },
   {
-    key: '2',
-    label: 'Option 3',
+    key: "2",
+    label: "Option 3",
     selected: false,
   },
 ]);
@@ -111,7 +112,8 @@ You can use to select multiple options, like this
   <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Android_MultipleSelect_Gif.gif">
 </p>
 
-You can also use to perform an action when a option is selected, using ```onSelectOption```
+You can also use to perform an action when a option is selected, using `onSelectOption`
+
 ```js
 <SearchSelect
   // configuration
@@ -144,47 +146,47 @@ You can also use to perform an action when a option is selected, using ```onSele
 
 ### Configuration props
 
-| Property              |    Type    |     Required      | Description                                                              |
-| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| multipleSelect        | Boolean |     True      | if the search should allow to select multiple options or not   |
-| onSelectOption        | Boolean |     False | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {}   |
-| options               | array of { key: string; label: string; selected: boolean }  |     True      | array of items to search and select   |
-| setOptions            |  function  |     False       | function that set the value of options array   |
-| setIsShowingList      |  function  |     False     | function that sets a boolean value that says if the list is showing or not |
-| setHasSelectedOptions    |  function  |     False     | function that sets a boolean value that says if there is any option selected |
+| Property              |                            Type                            | Required | Description                                                                                                |
+| --------------------- | :--------------------------------------------------------: | :------: | ---------------------------------------------------------------------------------------------------------- |
+| multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
+| onSelectOption        |                          Boolean                           |  False   | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {} |
+| options               | array of { key: string; label: string; selected: boolean } |   True   | array of items to search and select                                                                        |
+| setOptions            |                          function                          |  False   | function that set the value of options array                                                               |
+| setIsShowingList      |                          function                          |  False   | function that sets a boolean value that says if the list is showing or not                                 |
+| setHasSelectedOptions |                          function                          |  False   | function that sets a boolean value that says if there is any option selected                               |
 
 ### Styling props
 
-| Property              |    Type    |     Required      | Description                                                              |
-| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| searchContainerStyle    |  ViewStyle  |     False     | style of the View that wraps the searchBar  |
-| itemListContainerStyle|  ViewStyle  |     False     | style of the View that wraps individually the result of the search  |
-| inputStyle            |  ViewStyle  |     False     | style of the searchbar TextInput   |
-| placeholder           | String | False | placeholder of the searchbar TextInput  |
-| placeholderTextColor   | String | False | color of the placeholder of the searchbar TextInput |
-| searchTextColor        | String  | False | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
+| Property               |   Type    | Required | Description                                                                                     |
+| ---------------------- | :-------: | :------: | ----------------------------------------------------------------------------------------------- |
+| searchContainerStyle   | ViewStyle |  False   | style of the View that wraps the searchBar                                                      |
+| itemListContainerStyle | ViewStyle |  False   | style of the View that wraps individually the result of the search                              |
+| inputStyle             | ViewStyle |  False   | style of the searchbar TextInput                                                                |
+| placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
+| placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
+| searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
 
 ### Animation props
 
-| Property              |    Type    |     Required      | Description                                                              |
-| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| animationList   | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the list |
-| animationInput    | String  | False | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the input |
+| Property       |  Type  | Required | Description                                                                                                                                            |
+| -------------- | :----: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| animationList  | String |  False   | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the list  |
+| animationInput | String |  False   | name of the choosen [react-native-animatable](https://github.com/oblador/react-native-animatable#animations-2) animation for the entrance of the input |
 
 ### Icon props
 
-| Property              |    Type    |     Required      | Description                                                              |
-| --------------------- | :--------: | :--------------: | ------------------------------------------------------------------------ |
-| IconSource |  [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component   | True | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source |
-| searchIcon |  String   | False | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list |
-| searchIconColor  |  String  |   False | color of the icon that represent the search. Default is 'black' |
-| searchIconSize  |  Number  |  False  | size of the icon that represent the search. Default is 6% of the width  |
-| closeIcon  |  String     | False | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
-| closeIconColor  |  String  |   False   | color of the icon that represent closing the search. Default is 'black' |
-| closeIconSize  |  Number  |  False  | size of the icon that represent closing the search. Default is 6% of the width  |
-| optionSelectedIcon  |  String | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item |
-| optionSelectedIconColor  |  String  |  False  | color of the icon when the option is selected. Default is 'black'  |
-| optionSelectedIconSize  |  Number  |     False     | size of the icon when the option is selected. Default is 6% of the width  |
+| Property                |                                               Type                                               |              Required               | Description                                                                                                                                                                           |
+| ----------------------- | :----------------------------------------------------------------------------------------------: | :---------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IconSource              | [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) icon component |                True                 | Name of the selected source of the [React-native-vector-icons](https://github.com/oblador/react-native-vector-icons) source                                                           |
+| searchIcon              |                                              String                                              |                False                | Name of the Icon that it will represent the search. It will be located in the right of the searchBar TextInput. It will only appears when there isn’t any item selected on the list   |
+| searchIconColor         |                                              String                                              |                False                | color of the icon that represent the search. Default is 'black'                                                                                                                       |
+| searchIconSize          |                                              Number                                              |                False                | size of the icon that represent the search. Default is 6% of the width                                                                                                                |
+| closeIcon               |                                              String                                              |                False                | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
+| closeIconColor          |                                              String                                              |                False                | color of the icon that represent closing the search. Default is 'black'                                                                                                               |
+| closeIconSize           |                                              Number                                              |                False                | size of the icon that represent closing the search. Default is 6% of the width                                                                                                        |
+| optionSelectedIcon      |                                              String                                              | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item                                          |
+| optionSelectedIconColor |                                              String                                              |                False                | color of the icon when the option is selected. Default is 'black'                                                                                                                     |
+| optionSelectedIconSize  |                                              Number                                              |                False                | size of the icon when the option is selected. Default is 6% of the width                                                                                                              |
 
 ## :memo: License
 
