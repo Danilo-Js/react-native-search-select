@@ -39,7 +39,7 @@
 
 <p align="center">
   <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_MultipleSelect_Gif.gif">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Andriod_Gif.gif">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_Gif.gif">
 </p>
 
 </br>
