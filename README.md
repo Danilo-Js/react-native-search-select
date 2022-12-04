@@ -37,6 +37,13 @@
 
 </br>
 
+<p align="center">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_MultipleSelect_Gif.gif">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Andriod_Gif.gif">
+</p>
+
+</br>
+
 ## :rocket: Getting Started
 
 1. Install [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation) and the icon sources you want. In the main example, we use `Ionicons`. You can see all the sources and its icons [here](https://oblador.github.io/react-native-vector-icons/)
@@ -46,9 +53,92 @@
 
 ## :information_source: Usage
 
+1. Import the library
 ```js
 import SearchSelect from "react-native-search-select";
 ```
+
+2. Create the options state
+```js
+const [options, setOptions] = useState([
+  {
+    key: '0',
+    label: 'Option 1',
+    selected: false,
+  },
+  {
+    key: '1',
+    label: 'Option 2',
+    selected: false,
+  },
+  {
+    key: '2',
+    label: 'Option 3',
+    selected: false,
+  },
+]);
+```
+
+3. Use the library
+
+You can use to select multiple options, like this
+
+```js
+<SearchSelect
+  // configuration
+  multipleSelect={true}
+  options={options}
+  setOptions={setOptions}
+  // animation
+  animationInput="bounceIn"
+  animationList="fadeInUpBig"
+  // styling
+  placeholder="Search for options"
+  searchTextColor="blue"
+  // icon
+  IconSource={Ionicons}
+  searchIcon="ios-search-outline"
+  searchIconColor="black"
+  closeIcon="ios-close-circle"
+  closeIconColor="blue"
+  optionSelectedIcon="ios-checkbox"
+  optionSelectedIconColor="blue"
+/>
+```
+
+<p align="center">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_MultipleSelect_Gif.gif">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Android_MultipleSelect_Gif.gif">
+</p>
+
+You can also use to perform an action when a option is selected, using ```onSelectOption```
+```js
+<SearchSelect
+  // configuration
+  multipleSelect={false}
+  options={options}
+  onSelectOption={(index, option) => Alert.alert(JSON.stringify(option))}
+  // animation
+  animationInput="bounceIn"
+  animationList="fadeInUpBig"
+  // styling
+  placeholder="Search for options"
+  searchTextColor="blue"
+  // icon
+  IconSource={Ionicons}
+  searchIcon="ios-search-outline"
+  searchIconColor="black"
+  closeIcon="ios-close-circle"
+  closeIconColor="blue"
+  optionSelectedIcon="ios-checkbox"
+  optionSelectedIconColor="blue"
+/>
+```
+
+<p align="center">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_Gif.gif">
+  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Android_Gif.gif">
+</p>
 
 ## :scroll: Props
 
