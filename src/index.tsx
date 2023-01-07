@@ -31,6 +31,7 @@ interface SearchSelectProps {
   onSelectOption?: Function;
   options: Options[]; 
   setOptions?: Function;
+  showSelectedOptionsOnTop?: Boolean;
   setIsShowingList?: Function;  
   setHasSelectedOptions?: Function;
 
@@ -70,6 +71,7 @@ function SearchSelect({
   onSelectOption,
   options,
   setOptions,
+  showSelectedOptionsOnTop,
   setIsShowingList,
   setHasSelectedOptions,
 
@@ -220,9 +222,9 @@ function SearchSelect({
 
   const RenderItem = (item: Options, index: any) => (
     <TouchableOpacity
-      style={{...s.itemContainer, ...itemListContainerStyle}}
+      style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}
       onPress={() => handleSetSelectedsItem(index)}>
-      <View style={{...s.itemContainer, ...itemListContainerStyle}}>
+      <View style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}>
         <Text style={s.itemText}>{item.label}</Text>
         {!!item.selected && (
           <View style={{flex: 1, alignItems: 'flex-end'}}>
@@ -256,7 +258,7 @@ function SearchSelect({
       animation={animationInput && canAnimate ? animationInput : ''}
       style={{flex: 1, flexDirection: 'column', ...searchContainerStyle}}>
       <View>
-        {!!(options.filter(option => option.selected === true).length > 0) && <OptionsOnTop />}
+        {!!showSelectedOptionsOnTop && !!(options.filter(option => option.selected === true).length > 0) && <OptionsOnTop />}
         <View style={{...s.inputContainer, ...searchContainerStyle}}>
           <View style={{paddingTop: wp('2%')}}>
             {dataList && !!closeIcon ? (
@@ -306,6 +308,8 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: wp('2.5%'), 
+    marginTop: 0, 
+    marginLeft: 0, 
     padding: wp('2.5%'),
     borderWidth: 1, 
     borderRadius: wp('1%'),
@@ -344,6 +348,7 @@ const s = StyleSheet.create({
     height: hp('4.5%'),
     borderRadius: wp('1%'),
     margin: wp('1%'),
+    marginTop: wp('1.5%'),
   },
   itemText: {
     fontSize: wp('4%'),
