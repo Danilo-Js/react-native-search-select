@@ -8,6 +8,7 @@ import {
   ViewStyle,
   TouchableOpacity,
   FlatList,
+  TextStyle,
 } from 'react-native';
 
 import * as Animated from 'react-native-animatable';
@@ -38,6 +39,7 @@ interface SearchSelectProps {
   itemListContainerStyle?: ViewStyle;
   optionsOnTopContainerStyle?: ViewStyle;
   inputStyle?: ViewStyle;
+  optionsOnTopTextStyle?: TextStyle;
   placeholder?: string;
   placeholderTextColor?: string;
   searchTextColor?: string;
@@ -76,6 +78,7 @@ function SearchSelect({
   itemListContainerStyle = {},
   optionsOnTopContainerStyle = {},
   inputStyle = {},
+  optionsOnTopTextStyle = {},
   placeholder,
   placeholderTextColor,
   searchTextColor,
@@ -104,7 +107,6 @@ function SearchSelect({
   const [dataList, setDataList] = React.useState<Options[] | false>(false);
   const [canAnimate, setCanAnimate] = React.useState(true);
 
-
   const OptionsOnTop = () => {
     const selectedOptions = options.filter(option => option.selected === true); 
     return (
@@ -115,16 +117,17 @@ function SearchSelect({
           keyExtractor={(item, i) => item.key + i}
           renderItem={({item}) => (
             <View style={{...s.optionsOnTopView, ...optionsOnTopContainerStyle}}>
-              <Text>
-                {item.label}
-                  <TouchableOpacity onPress={() => {console.log('deletou o ' + item.label)}}>
-                    <IconSource
-                      name={closeTopOptionIcon}
-                      color={closeTopOptionIconColor ? closeTopOptionIconColor : 'black'}
-                      size={closeTopOptionIconSize ? closeTopOptionIconSize : wp('6%')}
-                    />
-                  </TouchableOpacity>
+              <Text style={{...s.optionsOnTopText, ...optionsOnTopTextStyle}}>
+                {item.label}{' '}
               </Text>
+
+              <TouchableOpacity onPress={() => handleSetSelectedsItem(options.findIndex(option => option.key === item.key) as any)}>
+                <IconSource
+                  name={closeTopOptionIcon}
+                  color={closeTopOptionIconColor ? closeTopOptionIconColor : colors.errorRed}
+                  size={closeTopOptionIconSize ? closeTopOptionIconSize : wp('6%')}
+                />
+              </TouchableOpacity>
             </View>
           )} 
         />
@@ -225,7 +228,7 @@ function SearchSelect({
           <View style={{flex: 1, alignItems: 'flex-end'}}>
             {!!optionSelectedIcon && <IconSource
               name={optionSelectedIcon}
-              color={optionSelectedIconColor ? optionSelectedIconColor : 'black'}
+              color={optionSelectedIconColor ? optionSelectedIconColor : colors.blue}
               size={optionSelectedIconSize ? optionSelectedIconSize : wp('6%')}
             />}
           </View>
@@ -265,14 +268,14 @@ function SearchSelect({
                 }}>
                 <IconSource
                   name={closeIcon}
-                  color={closeIconColor ? closeIconColor : 'black'}
+                  color={closeIconColor ? closeIconColor : colors.blue}
                   size={closeIconSize ? closeIconSize : wp('6%')}
                 />
               </TouchableOpacity>
             ) : !!searchIcon && (
               <IconSource
                 name={searchIcon}
-                color={searchIconColor ? searchIconColor : 'black'}
+                color={searchIconColor ? searchIconColor : colors.grey}
                 size={searchIconSize ? searchIconSize : wp('6%')}
               />
             )}
@@ -282,12 +285,12 @@ function SearchSelect({
             style={{
               ...s.inputStyle,
               ...inputStyle,
-              color: searchTextColor ? searchTextColor : 'black',
+              color: searchTextColor ? searchTextColor : colors.text,
             }}
             value={searchText}
             placeholder={placeholder ? placeholder : ''}
             placeholderTextColor={
-              placeholderTextColor ? placeholderTextColor : 'black'
+              placeholderTextColor ? placeholderTextColor : colors.text
             }
             underlineColorAndroid={'transparent'}
           />
@@ -300,10 +303,17 @@ function SearchSelect({
 
 const s = StyleSheet.create({
   optionsOnTopView: {
+    flexDirection: 'row',
+    alignItems: 'center',
     margin: wp('2.5%'), 
-    padding: wp('2.5%'), 
+    padding: wp('2.5%'),
     borderWidth: 1, 
-    borderRadius: wp('1%')
+    borderRadius: wp('1%'),
+    borderColor: colors.background,
+    backgroundColor: colors.background,
+  },
+  optionsOnTopText: {
+    fontWeight: 'bold',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -315,7 +325,7 @@ const s = StyleSheet.create({
   inputStyle: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     alignItems: 'flex-start',
     marginHorizontal: wp('2%'),
     paddingHorizontal: wp('2%'),
@@ -329,7 +339,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     paddingHorizontal: wp('1%'),
     height: hp('4.5%'),
     borderRadius: wp('1%'),

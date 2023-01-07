@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native';
+import { ViewStyle, TextStyle } from 'react-native';
 interface Options {
     key: string;
     label: string;
@@ -15,6 +15,7 @@ interface SearchSelectProps {
     itemListContainerStyle?: ViewStyle;
     optionsOnTopContainerStyle?: ViewStyle;
     inputStyle?: ViewStyle;
+    optionsOnTopTextStyle?: TextStyle;
     placeholder?: string;
     placeholderTextColor?: string;
     searchTextColor?: string;
@@ -34,5 +35,5 @@ interface SearchSelectProps {
     closeTopOptionIconColor?: string;
     closeTopOptionIconSize?: number;
 }
-declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, setIsShowingList, setHasSelectedOptions, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, placeholder, placeholderTextColor, searchTextColor, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, setIsShowingList, setHasSelectedOptions, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
 export default SearchSelect;
