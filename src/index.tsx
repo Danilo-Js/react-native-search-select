@@ -96,6 +96,27 @@ function SearchSelect({
   const [dataList, setDataList] = React.useState<Options[] | false>(false);
   const [canAnimate, setCanAnimate] = React.useState(true);
 
+
+  const OptionsOnTop = () => {
+    const selectedOptions = options.filter(option => option.selected === true); 
+    return (
+      <View>
+        <FlatList
+          data={selectedOptions}
+          horizontal={true}
+          keyExtractor={(item, i) => item.key + i}
+          renderItem={({item}) => (
+            <View>
+              <Text>
+                {item.label}
+              </Text>
+            </View>
+          )} 
+        />
+      </View>
+    )
+  };
+
   React.useEffect(() => {
     if (!dataList) {
       return;
@@ -216,45 +237,48 @@ function SearchSelect({
     <Animated.View
       animation={animationInput && canAnimate ? animationInput : ''}
       style={{flex: 1, flexDirection: 'column', ...searchContainerStyle}}>
-      <View style={{...s.inputContainer, ...searchContainerStyle}}>
-        <View style={{paddingTop: wp('2%')}}>
-          {dataList && !!closeIcon ? (
-            <TouchableOpacity
-              onPress={() => {
-                if (dataList) {
-                  handleClose();
-                }
-              }}>
+      <View>
+        {!!(options.filter(option => option.selected === true).length > 0) && <OptionsOnTop />}
+        <View style={{...s.inputContainer, ...searchContainerStyle}}>
+          <View style={{paddingTop: wp('2%')}}>
+            {dataList && !!closeIcon ? (
+              <TouchableOpacity
+                onPress={() => {
+                  if (dataList) {
+                    handleClose();
+                  }
+                }}>
+                <IconSource
+                  name={closeIcon}
+                  color={closeIconColor ? closeIconColor : 'black'}
+                  size={closeIconSize ? closeIconSize : wp('6%')}
+                />
+              </TouchableOpacity>
+            ) : !!searchIcon && (
               <IconSource
-                name={closeIcon}
-                color={closeIconColor ? closeIconColor : 'black'}
-                size={closeIconSize ? closeIconSize : wp('6%')}
+                name={searchIcon}
+                color={searchIconColor ? searchIconColor : 'black'}
+                size={searchIconSize ? searchIconSize : wp('6%')}
               />
-            </TouchableOpacity>
-          ) : !!searchIcon && (
-            <IconSource
-              name={searchIcon}
-              color={searchIconColor ? searchIconColor : 'black'}
-              size={searchIconSize ? searchIconSize : wp('6%')}
-            />
-          )}
+            )}
+          </View>
+          <TextInput
+            onChangeText={(text: string) => handleSearch(text)}
+            style={{
+              ...s.inputStyle,
+              ...inputStyle,
+              color: searchTextColor ? searchTextColor : 'black',
+            }}
+            value={searchText}
+            placeholder={placeholder ? placeholder : ''}
+            placeholderTextColor={
+              placeholderTextColor ? placeholderTextColor : 'black'
+            }
+            underlineColorAndroid={'transparent'}
+          />
         </View>
-        <TextInput
-          onChangeText={(text: string) => handleSearch(text)}
-          style={{
-            ...s.inputStyle,
-            ...inputStyle,
-            color: searchTextColor ? searchTextColor : 'black',
-          }}
-          value={searchText}
-          placeholder={placeholder ? placeholder : ''}
-          placeholderTextColor={
-            placeholderTextColor ? placeholderTextColor : 'black'
-          }
-          underlineColorAndroid={'transparent'}
-        />
-      </View>
-      {!!dataList && <ListComponent />}
+        {!!dataList && <ListComponent />}
+        </View>
     </Animated.View>
   );
 }
