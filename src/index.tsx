@@ -36,6 +36,7 @@ interface SearchSelectProps {
   // styling
   searchContainerStyle?: ViewStyle;
   itemListContainerStyle?: ViewStyle;
+  optionsOnTopContainerStyle?: ViewStyle;
   inputStyle?: ViewStyle;
   placeholder?: string;
   placeholderTextColor?: string;
@@ -56,6 +57,9 @@ interface SearchSelectProps {
   optionSelectedIcon: string; // create edge case in case not send a name icon
   optionSelectedIconColor?: string;
   optionSelectedIconSize?: number;
+  closeTopOptionIcon: string; // create edge case in case not send a name icon
+  closeTopOptionIconColor?: string;
+  closeTopOptionIconSize?: number;
 }
 
 function SearchSelect({
@@ -70,6 +74,7 @@ function SearchSelect({
   // styling
   searchContainerStyle = {},
   itemListContainerStyle = {},
+  optionsOnTopContainerStyle = {},
   inputStyle = {},
   placeholder,
   placeholderTextColor,
@@ -90,6 +95,9 @@ function SearchSelect({
   optionSelectedIcon,
   optionSelectedIconColor,
   optionSelectedIconSize,
+  closeTopOptionIcon,
+  closeTopOptionIconColor,
+  closeTopOptionIconSize,
 }: SearchSelectProps) {
   const [searchText, setSearchText] = React.useState('');
   const [auxOptions, setAuxOptions] = React.useState<Options[]>(options);
@@ -106,9 +114,16 @@ function SearchSelect({
           horizontal={true}
           keyExtractor={(item, i) => item.key + i}
           renderItem={({item}) => (
-            <View>
+            <View style={{...s.optionsOnTopView, ...optionsOnTopContainerStyle}}>
               <Text>
                 {item.label}
+                  <TouchableOpacity onPress={() => {console.log('deletou o ' + item.label)}}>
+                    <IconSource
+                      name={closeTopOptionIcon}
+                      color={closeTopOptionIconColor ? closeTopOptionIconColor : 'black'}
+                      size={closeTopOptionIconSize ? closeTopOptionIconSize : wp('6%')}
+                    />
+                  </TouchableOpacity>
               </Text>
             </View>
           )} 
@@ -284,6 +299,12 @@ function SearchSelect({
 }
 
 const s = StyleSheet.create({
+  optionsOnTopView: {
+    margin: wp('2.5%'), 
+    padding: wp('2.5%'), 
+    borderWidth: 1, 
+    borderRadius: wp('1%')
+  },
   inputContainer: {
     flexDirection: 'row',
     marginHorizontal: wp('2%'),

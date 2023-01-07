@@ -13,6 +13,7 @@ interface SearchSelectProps {
     setHasSelectedOptions?: Function;
     searchContainerStyle?: ViewStyle;
     itemListContainerStyle?: ViewStyle;
+    optionsOnTopContainerStyle?: ViewStyle;
     inputStyle?: ViewStyle;
     placeholder?: string;
     placeholderTextColor?: string;
@@ -29,6 +30,9 @@ interface SearchSelectProps {
     optionSelectedIcon: string;
     optionSelectedIconColor?: string;
     optionSelectedIconSize?: number;
+    closeTopOptionIcon: string;
+    closeTopOptionIconColor?: string;
+    closeTopOptionIconSize?: number;
 }
-declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, setIsShowingList, setHasSelectedOptions, searchContainerStyle, itemListContainerStyle, inputStyle, placeholder, placeholderTextColor, searchTextColor, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, setIsShowingList, setHasSelectedOptions, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, placeholder, placeholderTextColor, searchTextColor, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
 export default SearchSelect;
