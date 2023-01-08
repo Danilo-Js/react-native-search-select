@@ -164,6 +164,8 @@ You can also use to perform an action when a option is selected, using `onSelect
 | searchContainerStyle   | ViewStyle |  False   | style of the View that wraps the searchBar                                                      |
 | itemListContainerStyle | ViewStyle |  False   | style of the View that wraps individually the result of the search                              |
 | inputStyle             | ViewStyle |  False   | style of the searchbar TextInput                                                                |
+| optionsOnTopContainerStyle             | ViewStyle |  False   | style of every view that wraps the selected option at the top of the bar                                                                |
+| optionsOnTopTextStyle             | TextStyle |  False   | style of the text in selected options in the top of the bar                                                                |
 | placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
 | placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
 | searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
