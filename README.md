@@ -90,6 +90,7 @@ You can use to select multiple options, like this
   multipleSelect={true}
   options={options}
   setOptions={setOptions}
+  showSelectedOptionsOnTop={true}
   // animation
   animationInput="bounceIn"
   animationList="fadeInUpBig"
@@ -152,6 +153,7 @@ You can also use to perform an action when a option is selected, using `onSelect
 | onSelectOption        |                          Boolean                           |  False   | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {} |
 | options               | array of { key: string; label: string; selected: boolean } |   True   | array of items to search and select                                                                        |
 | setOptions            |                          function                          |  False   | function that set the value of options array                                                               |
+| showSelectedOptionsOnTop      |                          Boolean                          |  False   | function that sets a boolean value that says if the selected option should appear on the top of the bar    |
 | setIsShowingList      |                          function                          |  False   | function that sets a boolean value that says if the list is showing or not                                 |
 | setHasSelectedOptions |                          function                          |  False   | function that sets a boolean value that says if there is any option selected                               |
 
