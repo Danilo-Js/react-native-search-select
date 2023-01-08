@@ -16,11 +16,9 @@
   <a href="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select/commits/master">
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select">
   </a>
+</p>
 
-  <a href="https://www.npmjs.com/package/react-native-react-native-search-bar">
-    <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-native-search-select.svg">
-  </a>
-
+<p align="center">
   <a href="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select/issues">
     <img alt="Repository issues" src="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select">
   </a>
@@ -28,6 +26,10 @@
   <img alt="Repository forks" src="https://img.shields.io/github/forks/Danilo-Js/react-native-search-select">
   
   <img alt="Repository stars" src="https://img.shields.io/github/stars/Danilo-Js/react-native-search-select">
+
+  <a href="https://www.npmjs.com/package/react-native-react-native-search-bar">
+    <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-native-search-select.svg">
+  </a>
 </p>
 
 <p align="center" direction="row">
@@ -37,11 +39,17 @@
   <a href="#memo-license">License</a>
 </p>
 
+<p align="center" direction="row">
+  <a href="#configuration-props">Configuration props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#styling-props">Styling props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#animation-props">Animation props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#icon-props">Icon props</a>
+</p>
+
 </br>
 
 <p align="center">
   <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
-  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_Gif.gif">
   <img alt="iOS" width="300" src="./Gallery/iOS_Gif.gif">
 </p>
 
@@ -124,7 +132,7 @@ You can also use to perform an action when a option is selected, using `onSelect
   // configuration
   multipleSelect={false}
   options={options}
-  onSelectOption={(index, option) => Alert.alert(JSON.stringify(option))}
+  onSelectOption={(index, option) => Alert.alert(option.label + ' selected!')}
   // animation
   animationInput="bounceIn"
   animationList="fadeInUpBig"
@@ -153,28 +161,28 @@ You can also use to perform an action when a option is selected, using `onSelect
 
 | Property              |                            Type                            | Required | Description                                                                                                |
 | --------------------- | :--------------------------------------------------------: | :------: | ---------------------------------------------------------------------------------------------------------- |
-| multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
-| onSelectOption        |                          Boolean                           |  False   | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {} |
 | options               | array of { key: string; label: string; selected: boolean } |   True   | array of items to search and select                                                                        |
 | setOptions            |                          function                          |  False   | function that set the value of options array                                                               |
+| multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
 | showSelectedOptionsOnTop      |                          Boolean                          |  False   | function that sets a boolean value that says if the selected option should appear on the top of the bar    |
+| showSelectedOptionsCounter |                          Boolean                          |  False   | Boolean value to show a counter of selected options. Shows nothing when there is no selected options.                               |
+| onSelectOption        |                          Boolean                           |  False   | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {} |
 | setIsShowingList      |                          function                          |  False   | function that sets a boolean value that says if the list is showing or not                                 |
 | setHasSelectedOptions |                          function                          |  False   | function that sets a boolean value that says if there is any option selected                               |
-| showSelectedOptionsCounter |                          Boolean                          |  False   | Boolean value to show a counter of selected options. Shows nothing when there is no selected options.                               |
 
 
 ### Styling props
 
 | Property               |   Type    | Required | Description                                                                                     |
 | ---------------------- | :-------: | :------: | ----------------------------------------------------------------------------------------------- |
+| placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
+| placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
+| searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
 | searchContainerStyle   | ViewStyle |  False   | style of the View that wraps the searchBar                                                      |
 | itemListContainerStyle | ViewStyle |  False   | style of the View that wraps individually the result of the search                              |
 | inputStyle             | ViewStyle |  False   | style of the searchbar TextInput                                                                |
 | optionsOnTopContainerStyle             | ViewStyle |  False   | style of every view that wraps the selected option at the top of the bar                                                                |
 | optionsOnTopTextStyle             | TextStyle |  False   | style of the text in selected options in the top of the bar                                                                |
-| placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
-| placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
-| searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
 | counterTextStyle        |  TextStyle   |  False   | style of the text of the selected options counter |
 | counterContainerStyle        |  ViewStyle   |  False   | style of the view of the selected options counter |
 
@@ -196,12 +204,12 @@ You can also use to perform an action when a option is selected, using `onSelect
 | closeIcon               |                                              String                                              |                False                | Name of the Icon that it will represent closing the search. It will be located in the right of the searchBar TextInput. It will only appears when there is selected items on the list |
 | closeIconColor          |                                              String                                              |                False                | color of the icon that represent closing the search. Default is 'black'                                                                                                               |
 | closeIconSize           |                                              Number                                              |                False                | size of the icon that represent closing the search. Default is 6% of the width                                                                                                        |
-| optionSelectedIcon      |                                              String                                              | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item                                          |
+| optionSelectedIcon      |                                              String                                              | False | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item                                          |
 | optionSelectedIconColor |                                              String                                              |                False                | color of the icon when the option is selected. Default is 'black'                                                                                                                     |
 | optionSelectedIconSize  |                                              Number                                              |                False                | size of the icon when the option is selected. Default is 6% of the width                                                                                                              |
 | closeTopOptionIcon      |                                              String                                              | False | name of the icon that it will represent when an option at the top of the bar will be deleted                                          |
-| closeTopOptionIconSize  |                                              Number                                              |                False                | size of the icon the icon that it will represent when an option at the top of the bar will be deleted |
-| closeTopOptionIconColor |                                              String                                              |                False                | color of the icon the icon that it will represent when an option at the top of the bar will be deleted  |
+| closeTopOptionIconSize  |                                              Number                                              |                False                | size of the icon the icon that it will represent when a selected option at the top of the bar will set as unselected |
+| closeTopOptionIconColor |                                              String                                              |                False                | color of the icon the icon that it will represent when a selected option at the top of the bar will set as unselected  |
 ## :memo: License
 
 This project is under the MIT license. See the [LICENSE](https://github.com/Danilo-Js/react-native-search-select/blob/master/LICENSE) for more information.
