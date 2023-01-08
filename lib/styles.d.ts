@@ -39,7 +39,6 @@ export declare const s: {
         alignItems: "center";
         justifyContent: "center";
         backgroundColor: string;
-        paddingHorizontal: number;
         height: number;
         borderRadius: number;
         margin: number;

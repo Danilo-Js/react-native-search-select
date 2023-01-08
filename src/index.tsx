@@ -115,6 +115,7 @@ function SearchSelect({
   const [auxOptions, setAuxOptions] = React.useState<Options[]>(options);
   const [dataList, setDataList] = React.useState<Options[] | false>(false);
   const [canAnimate, setCanAnimate] = React.useState(true);
+  const [hideOptionsOnTop, setHideOptionsOnTop] = React.useState(false);
 
   const OptionsOnTop = () => {
     const selectedOptions = options.filter(option => option.selected === true); 
@@ -163,13 +164,15 @@ function SearchSelect({
   const handleSearch = (e: string) => {
     setSearchText(e);
     e = e.toLowerCase();
+    setHideOptionsOnTop(true);
     if (!e) {
       setDataList(false);
-      setCanAnimate(true);
+      setCanAnimate(false);
       if (setIsShowingList) {
         setIsShowingList(false);
       }
     } else {
+      setHideOptionsOnTop(false);
       const result = auxOptions.filter(op =>
         op.label.toLowerCase().includes(e),
       );
@@ -188,10 +191,11 @@ function SearchSelect({
 
   const handleClose = () => {
     setDataList(false);
-    setCanAnimate(true);
+    setCanAnimate(false);
     if (setIsShowingList) {
       setIsShowingList(false);
     }
+    setHideOptionsOnTop(true);
   };
 
   const handleSetSelectedsItem = (index: string) => {
@@ -207,6 +211,8 @@ function SearchSelect({
     if (!multipleSelect) {
       return;
     }
+
+    setHideOptionsOnTop(false);
 
     let auxData: Options[] = [];
     dataList.forEach(d => {
@@ -232,9 +238,9 @@ function SearchSelect({
       style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}
       onPress={() => handleSetSelectedsItem(index)}>
       <View style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}>
-        <Text style={s.itemText}>{item.label}</Text>
+        <Text style={[s.itemText, !!item.selected && {paddingLeft: ('3%')}]}>{item.label}</Text>
         {!!item.selected && (
-          <View style={{flex: 1, alignItems: 'flex-end'}}>
+          <View style={{flex: 1, alignItems: 'flex-end', paddingRight: wp('3%')}}>
             {!!optionSelectedIcon && <IconSource
               name={optionSelectedIcon}
               color={optionSelectedIconColor ? optionSelectedIconColor : colors.blue}
@@ -273,7 +279,7 @@ function SearchSelect({
       animation={animationInput && canAnimate ? animationInput : ''}
       style={{flex: 1, flexDirection: 'column', ...searchContainerStyle}}>
       <View>
-        {!!showSelectedOptionsOnTop && options.some(option => option.selected === true) && <OptionsOnTop />}
+        {!hideOptionsOnTop && !!showSelectedOptionsOnTop && options.some(option => option.selected === true) && <OptionsOnTop />}
         <View style={{...s.inputContainer, ...searchContainerStyle}}>
           <View style={{paddingTop: wp('2%')}}>
             {dataList && !!closeIcon ? (
