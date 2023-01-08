@@ -16,9 +16,11 @@
   <a href="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select/commits/master">
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select">
   </a>
-</p>
 
-<p align="center">
+  <a href="https://www.npmjs.com/package/react-native-react-native-search-bar">
+    <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-native-search-select.svg">
+  </a>
+
   <a href="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select/issues">
     <img alt="Repository issues" src="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select">
   </a>
@@ -38,8 +40,9 @@
 </br>
 
 <p align="center">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_MultipleSelect_Gif.gif">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_Gif.gif">
+  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_Gif.gif">
+  <img alt="iOS" width="300" src="./Gallery/iOS_Gif.gif">
 </p>
 
 </br>
@@ -91,6 +94,7 @@ You can use to select multiple options, like this
   options={options}
   setOptions={setOptions}
   showSelectedOptionsOnTop={true}
+  showSelectedOptionsCounter={true}
   // animation
   animationInput="bounceIn"
   animationList="fadeInUpBig"
@@ -109,8 +113,8 @@ You can use to select multiple options, like this
 ```
 
 <p align="center">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_MultipleSelect_Gif.gif">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Android_MultipleSelect_Gif.gif">
+  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="Android_MultipleSelect" width="300" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
 </p>
 
 You can also use to perform an action when a option is selected, using `onSelectOption`
@@ -139,8 +143,8 @@ You can also use to perform an action when a option is selected, using `onSelect
 ```
 
 <p align="center">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/iOS_Gif.gif">
-  <img alt="iOS" width="300" src="https://github.com/Danilo-Js/react-native-search-select/blob/main/Gallery/Android_Gif.gif">
+  <img alt="iOS" width="300" src="./Gallery/iOS_Gif.gif">
+  <img alt="Android" width="300" src="./Gallery/Android_Gif.gif">
 </p>
 
 ## :scroll: Props
