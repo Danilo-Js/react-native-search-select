@@ -117,7 +117,8 @@ You can use to select multiple options, like this
   closeIconColor="blue"
   optionSelectedIcon="ios-checkbox"
   optionSelectedIconColor="blue"
-/>
+  closeTopOptionIcon="ios-close-circle-outline"
+  />
 ```
 
 <p align="center">
