@@ -12,6 +12,7 @@ interface SearchSelectProps {
     showSelectedOptionsOnTop?: Boolean;
     setIsShowingList?: Function;
     setHasSelectedOptions?: Function;
+    showSelectedOptionsCounter?: Boolean;
     searchContainerStyle?: ViewStyle;
     itemListContainerStyle?: ViewStyle;
     optionsOnTopContainerStyle?: ViewStyle;
@@ -20,6 +21,8 @@ interface SearchSelectProps {
     placeholder?: string;
     placeholderTextColor?: string;
     searchTextColor?: string;
+    counterTextStyle?: TextStyle;
+    counterContainerStyle?: ViewStyle;
     animationList?: string;
     animationInput?: string;
     IconSource: any;
@@ -36,5 +39,5 @@ interface SearchSelectProps {
     closeTopOptionIconColor?: string;
     closeTopOptionIconSize?: number;
 }
-declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, showSelectedOptionsCounter, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, counterTextStyle, counterContainerStyle, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
 export default SearchSelect;

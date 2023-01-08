@@ -156,6 +156,8 @@ You can also use to perform an action when a option is selected, using `onSelect
 | showSelectedOptionsOnTop      |                          Boolean                          |  False   | function that sets a boolean value that says if the selected option should appear on the top of the bar    |
 | setIsShowingList      |                          function                          |  False   | function that sets a boolean value that says if the list is showing or not                                 |
 | setHasSelectedOptions |                          function                          |  False   | function that sets a boolean value that says if there is any option selected                               |
+| showSelectedOptionsCounter |                          Boolean                          |  False   | Boolean value to show a counter of selected options. Shows nothing when there is no selected options.                               |
+
 
 ### Styling props
 
@@ -169,6 +171,8 @@ You can also use to perform an action when a option is selected, using `onSelect
 | placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
 | placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
 | searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
+| counterTextStyle        |  TextStyle   |  False   | style of the text of the selected options counter |
+| counterContainerStyle        |  ViewStyle   |  False   | style of the view of the selected options counter |
 
 ### Animation props
 
