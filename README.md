@@ -191,7 +191,9 @@ You can also use to perform an action when a option is selected, using `onSelect
 | optionSelectedIcon      |                                              String                                              | True only if multipleSelect is true | Name of the Icon that it will represent when the the individual item is selected. It will only appers at the right side of the selected item                                          |
 | optionSelectedIconColor |                                              String                                              |                False                | color of the icon when the option is selected. Default is 'black'                                                                                                                     |
 | optionSelectedIconSize  |                                              Number                                              |                False                | size of the icon when the option is selected. Default is 6% of the width                                                                                                              |
-
+| closeTopOptionIcon      |                                              String                                              | False | name of the icon that it will represent when an option at the top of the bar will be deleted                                          |
+| closeTopOptionIconSize  |                                              Number                                              |                False                | size of the icon the icon that it will represent when an option at the top of the bar will be deleted |
+| closeTopOptionIconColor |                                              String                                              |                False                | color of the icon the icon that it will represent when an option at the top of the bar will be deleted  |
 ## :memo: License
 
 This project is under the MIT license. See the [LICENSE](https://github.com/Danilo-Js/react-native-search-select/blob/master/LICENSE) for more information.
