@@ -97,29 +97,31 @@ const [options, setOptions] = useState([
 You can use to select multiple options, like this
 
 ```js
-<SearchSelect
-  // configuration
-  multipleSelect={true}
-  options={options}
-  setOptions={setOptions}
-  showSelectedOptionsOnTop={true}
-  showSelectedOptionsCounter={true}
-  // animation
-  animationInput="bounceIn"
-  animationList="fadeInUpBig"
-  // styling
-  placeholder="Search for options"
-  searchTextColor="blue"
-  // icon
-  IconSource={Ionicons}
-  searchIcon="ios-search-outline"
-  searchIconColor="black"
-  closeIcon="ios-close-circle"
-  closeIconColor="blue"
-  optionSelectedIcon="ios-checkbox"
-  optionSelectedIconColor="blue"
-  closeTopOptionIcon="ios-close-circle-outline"
+<View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
+  <SearchSelect
+    // configuration
+    multipleSelect={true}
+    options={options}
+    setOptions={setOptions}
+    showSelectedOptionsOnTop={true}
+    showSelectedOptionsCounter={true}
+    // animation
+    animationInput="bounceIn"
+    animationList="fadeInUpBig"
+    // styling
+    placeholder="Search for options"
+    searchTextColor="blue"
+    // icon
+    IconSource={Ionicons}
+    searchIcon="ios-search-outline"
+    searchIconColor="black"
+    closeIcon="ios-close-circle"
+    closeIconColor="blue"
+    optionSelectedIcon="ios-checkbox"
+    optionSelectedIconColor="blue"
+    closeTopOptionIcon="ios-close-circle-outline"
   />
+</View>
 ```
 
 <p align="center">
@@ -130,26 +132,28 @@ You can use to select multiple options, like this
 You can also use to perform an action when a option is selected, using `onSelectOption`
 
 ```js
-<SearchSelect
-  // configuration
-  multipleSelect={false}
-  options={options}
-  onSelectOption={(index, option) => Alert.alert(option.label + ' selected!')}
-  // animation
-  animationInput="bounceIn"
-  animationList="fadeInUpBig"
-  // styling
-  placeholder="Search for options"
-  searchTextColor="blue"
-  // icon
-  IconSource={Ionicons}
-  searchIcon="ios-search-outline"
-  searchIconColor="black"
-  closeIcon="ios-close-circle"
-  closeIconColor="blue"
-  optionSelectedIcon="ios-checkbox"
-  optionSelectedIconColor="blue"
-/>
+<View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
+  <SearchSelect
+    // configuration
+    multipleSelect={false}
+    options={options}
+    onSelectOption={(index, option) => Alert.alert(option.label + ' selected!')}
+    // animation
+    animationInput="bounceIn"
+    animationList="fadeInUpBig"
+    // styling
+    placeholder="Search for options"
+    searchTextColor="blue"
+    // icon
+    IconSource={Ionicons}
+    searchIcon="ios-search-outline"
+    searchIconColor="black"
+    closeIcon="ios-close-circle"
+    closeIconColor="blue"
+    optionSelectedIcon="ios-checkbox"
+    optionSelectedIconColor="blue"
+  />
+</View>
 ```
 
 <p align="center">
