@@ -11,21 +11,21 @@
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Danilo-Js/react-native-search-select">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Danilo-Js/react-native-search-select">
-  
   <a href="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select/commits/master">
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/Danilo-Js/react-native-search-select">
   </a>
+  
+  <img alt="Repository forks" src="https://img.shields.io/github/forks/Danilo-Js/react-native-search-select">
+  
+  <img alt="Repository stars" src="https://img.shields.io/github/stars/Danilo-Js/react-native-search-select">
 </p>
 
 <p align="center">
   <a href="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select/issues">
     <img alt="Repository issues" src="https://img.shields.io/github/issues/Danilo-Js/react-native-search-select">
   </a>
-  
-  <img alt="Repository forks" src="https://img.shields.io/github/forks/Danilo-Js/react-native-search-select">
-  
-  <img alt="Repository stars" src="https://img.shields.io/github/stars/Danilo-Js/react-native-search-select">
+
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/Danilo-Js/react-native-search-select">
 
   <a href="https://www.npmjs.com/package/react-native-react-native-search-bar">
     <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-native-search-select.svg">
