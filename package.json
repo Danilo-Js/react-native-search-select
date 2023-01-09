@@ -1,6 +1,6 @@
 {
   "name": "react-native-search-select",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "An animated component so you can search and select objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
