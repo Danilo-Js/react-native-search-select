@@ -63,10 +63,11 @@
 
 ## :information_source: Usage
 
-1. Import the library
+1. Import the library and your choosen icon source
 
 ```js
 import SearchSelect from "react-native-search-select";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 ```
 
 2. Create the options state
