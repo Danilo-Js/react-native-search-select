@@ -1,7 +1,7 @@
 {
   "name": "react-native-search-select",
-  "version": "3.0.5",
-  "description": "An animated component so you can search and select objects",
+  "version": "3.0.6",
+  "description": "An animated searchbar component so you can search and select objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -15,7 +15,9 @@
     "react-native",
     "search",
     "select",
-    "react-native-search-select"
+    "react-native-search-select",
+    "react-native-search",
+    "react-native-searchbar"
   ],
   "author": {
     "name": "Danilo Lima",
