@@ -3,7 +3,6 @@ import * as React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   ViewStyle,
   TouchableOpacity,
@@ -198,14 +197,13 @@ function SearchSelect({
     setHideOptionsOnTop(true);
   };
 
-  const handleSetSelectedsItem = (index: string) => {
+  const handleSetSelectedsItem = (index: any, item?: Options) => {
     if (!dataList) {
       return;
     }
 
-    if (onSelectOption) {
-      const selectedOption = dataList.find(value => value.key == index);
-      onSelectOption(index, selectedOption)
+    if (onSelectOption && item) {
+      onSelectOption(index, item)
     }
 
     if (!multipleSelect) {
@@ -236,7 +234,7 @@ function SearchSelect({
   const RenderItem = (item: Options, index: any) => (
     <TouchableOpacity
       style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}
-      onPress={() => handleSetSelectedsItem(index)}>
+      onPress={() => handleSetSelectedsItem(index, item)}>
       <View style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}>
         <Text style={[s.itemText, !!item.selected && {paddingLeft: ('3%')}]}>{item.label}</Text>
         {!!item.selected && (
