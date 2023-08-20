@@ -33,6 +33,7 @@
 </p>
 
 <p align="center" direction="row">
+<a href="#information_source-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#scroll-props">Props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -54,6 +55,12 @@
 </p>
 
 </br>
+
+## :information_source: About the project
+
+This project was made for my final paper in the Computer Science course at UFES (Federal University of Espírito Santo), where I created this public library to study the acceptance of the developer community with new proposals for reuse.
+
+Please leave a ***STAR*** on this [repository](https://github.com/Danilo-Js/react-native-search-select) and contribute to my work.
 
 ## :rocket: Getting Started
 
