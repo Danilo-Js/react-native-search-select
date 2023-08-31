@@ -107,6 +107,7 @@ You can use to select multiple options, like this
 <View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
   <SearchSelect
     // configuration
+    placeholder="Search for options"
     multipleSelect={true}
     options={options}
     setOptions={setOptions}
@@ -116,7 +117,6 @@ You can use to select multiple options, like this
     animationInput="bounceIn"
     animationList="fadeInUpBig"
     // styling
-    placeholder="Search for options"
     searchTextColor="blue"
     // icon
     IconSource={Ionicons}
@@ -142,6 +142,7 @@ You can also use to perform an action when a option is selected, using `onSelect
 <View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
   <SearchSelect
     // configuration
+    placeholder="Search for options"
     multipleSelect={false}
     options={options}
     onSelectOption={(index, option) => Alert.alert(option.label + ' selected!')}
@@ -149,7 +150,6 @@ You can also use to perform an action when a option is selected, using `onSelect
     animationInput="bounceIn"
     animationList="fadeInUpBig"
     // styling
-    placeholder="Search for options"
     searchTextColor="blue"
     // icon
     IconSource={Ionicons}
@@ -174,6 +174,7 @@ You can also use to perform an action when a option is selected, using `onSelect
 
 | Property              |                            Type                            | Required | Description                                                                                                |
 | --------------------- | :--------------------------------------------------------: | :------: | ---------------------------------------------------------------------------------------------------------- |
+| placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
 | options               | array of { key: string; label: string; selected: boolean } |   True   | array of items to search and select                                                                        |
 | setOptions            |                          function                          |  False   | function that set the value of options array                                                               |
 | multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
@@ -188,7 +189,6 @@ You can also use to perform an action when a option is selected, using `onSelect
 
 | Property               |   Type    | Required | Description                                                                                     |
 | ---------------------- | :-------: | :------: | ----------------------------------------------------------------------------------------------- |
-| placeholder            |  String   |  False   | placeholder of the searchbar TextInput                                                          |
 | placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
 | searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
 | searchContainerStyle   | ViewStyle |  False   | style of the View that wraps the searchBar                                                      |
