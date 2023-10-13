@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ViewStyle, TextStyle } from 'react-native';
 interface Options {
     key: string;
@@ -13,6 +14,8 @@ interface SearchSelectProps {
     setIsShowingList?: Function;
     setHasSelectedOptions?: Function;
     showSelectedOptionsCounter?: Boolean;
+    isPaginated?: boolean;
+    pageSize?: number;
     searchContainerStyle?: ViewStyle;
     itemListContainerStyle?: ViewStyle;
     optionsOnTopContainerStyle?: ViewStyle;
@@ -39,5 +42,5 @@ interface SearchSelectProps {
     closeTopOptionIconColor?: string;
     closeTopOptionIconSize?: number;
 }
-declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, showSelectedOptionsCounter, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, counterTextStyle, counterContainerStyle, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): JSX.Element;
+declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, showSelectedOptionsCounter, isPaginated, pageSize, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, counterTextStyle, counterContainerStyle, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): React.JSX.Element;
 export default SearchSelect;

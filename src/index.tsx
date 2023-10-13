@@ -35,6 +35,8 @@ interface SearchSelectProps {
   setIsShowingList?: Function;  
   setHasSelectedOptions?: Function;
   showSelectedOptionsCounter?: Boolean;
+  isPaginated?: boolean; 
+  pageSize?: number; 
 
   // styling
   searchContainerStyle?: ViewStyle;
@@ -54,16 +56,16 @@ interface SearchSelectProps {
 
   // icon
   IconSource: any;
-  searchIcon?: string; // create edge case in case not send a name icon
+  searchIcon?: string;
   searchIconColor?: string;
   searchIconSize?: number;
-  closeIcon: string; // create edge case in case not send a name icon
+  closeIcon: string;
   closeIconColor?: string;
   closeIconSize?: number;
-  optionSelectedIcon: string; // create edge case in case not send a name icon
+  optionSelectedIcon: string;
   optionSelectedIconColor?: string;
   optionSelectedIconSize?: number;
-  closeTopOptionIcon: string; // create edge case in case not send a name icon
+  closeTopOptionIcon: string;
   closeTopOptionIconColor?: string;
   closeTopOptionIconSize?: number;
 }
@@ -78,6 +80,8 @@ function SearchSelect({
   setIsShowingList,
   setHasSelectedOptions,
   showSelectedOptionsCounter,
+  isPaginated,
+  pageSize,
 
   // styling
   searchContainerStyle = {},
@@ -110,12 +114,139 @@ function SearchSelect({
   closeTopOptionIconColor,
   closeTopOptionIconSize,
 }: SearchSelectProps) {
-  const [searchText, setSearchText] = React.useState('');
-  const [auxOptions, setAuxOptions] = React.useState<Options[]>(options);
-  const [dataList, setDataList] = React.useState<Options[] | false>(false);
-  const [canAnimate, setCanAnimate] = React.useState(true);
-  const [hideOptionsOnTop, setHideOptionsOnTop] = React.useState(false);
+  // -- STATES --
+  const [searchText, setSearchText] = React.useState(''); // state to handle the search text
+  const [canAnimate, setCanAnimate] = React.useState(true); // state to handle if can animate
+  const [hideOptionsOnTop, setHideOptionsOnTop] = React.useState(false); // state to hide the options on top
+  // data
+  const [auxOptions, _] = React.useState<Options[]>(options); // options but in a useState (backup of the options)
+  const [dataList, _dataList] = React.useState<Options[]>([]); // options to show in the list
+  // pagination
+  const [currentPage, setCurrentPage] = React.useState(1);
+  
+  // -- FUNCTIONS --
+  // set the list of options if it is different from the current list
+  const setDataList = (newData: Options[]) => {
+    if (JSON.stringify(dataList) !== JSON.stringify(newData)) {
+      _dataList(newData);
+    }
+  };
 
+  // returns the list filtered by a page
+  const getDataByPage = (options: Options[], page: number): Options[] => {
+    if (!pageSize) return [];
+    setCurrentPage(page);
+    const startIndex = (page - 1) * (pageSize); // calculate the start index
+    const endIndex = startIndex + (pageSize); // calculate the end index
+    const newItems = options.slice(startIndex, endIndex).slice(startIndex, endIndex).filter((newItem: Options) => dataList.length > 0 || !dataList.some((existingItem: Options) => existingItem.key === newItem.key))
+    return newItems;
+  }
+
+  // returns the list filtered by the search text
+  const getSearchResult = React.useCallback((e: string): Options[] => {
+    return auxOptions.filter((op: Options) =>
+        op.label.toLowerCase().includes(e),
+    );
+}, [auxOptions]);
+
+  // function to handle search
+  const handleSearch = React.useCallback((e: string) => {
+    setSearchText(e);
+    e = e.toLowerCase(); // set the search text to lower case
+    setHideOptionsOnTop(true);
+    // if search is empty, close the list
+    if (!e) {
+      setDataList([]); // close the list
+      setCanAnimate(false); // set the animation to false
+      if (setIsShowingList) { // set the state of showing the list to false, if the user send the function
+        setIsShowingList(false);
+      }
+    } else {
+      // if search is not empty, set the page to one and filter the list
+      setHideOptionsOnTop(false); // can show the options on top
+      let result = getSearchResult(e); // get the result
+      // if pagination is true, filter the result by page one
+      if (isPaginated) {
+        result = getDataByPage(result, 1);
+      }
+      setDataList(result);
+    }
+  }, [auxOptions, isPaginated, pageSize, dataList]);
+
+  // function to load more items in the list and set the page
+  const loadMoreItems = React.useCallback(() => {
+    if (!isPaginated || !pageSize || dataList.length > 0) return;
+    let result = getSearchResult(searchText); // get the result
+    const newResult = getDataByPage(result, currentPage + 1); // get the new items by increased page
+    // if there is result, set the list
+    if (newResult.length > 0 && dataList) {
+      setDataList([...dataList, ...newResult]);
+    }
+  }, [isPaginated, pageSize, dataList, searchText, currentPage]);
+
+  // function to close the list
+  const handleClose = () => {
+    setDataList([]); // close the list
+    setCanAnimate(false); // set the animation to false
+    if (setIsShowingList) { // set the state of showing the list to false, if the user send the function
+      setIsShowingList(false);
+    }
+    setHideOptionsOnTop(true); // hide the options on top
+  };
+
+  // function to handle the selection of an option
+  const handleSetSelectedsItem = (index: any, item?: Options) => {
+    // it is not possible to select an option if there is no list
+    if (dataList.length > 0) {
+      return;
+    }
+    // if there is action to select an option, call it
+    if (onSelectOption && item) {
+      onSelectOption(index, item)
+    }
+    // do not continue if cannot select multiple options
+    if (!multipleSelect) {
+      return;
+    }
+    // update the list, set the selected option as selected
+    let auxData: Options[] = [];
+    dataList.forEach(d => {
+      if (d.key == index) {
+        auxData.push({
+          ...d,
+          selected: !d.selected,
+        });
+      } else {
+        auxData.push(d);
+      }
+    });
+    setHideOptionsOnTop(false); // show the options on top
+    if (setOptions) { // if there is a function to set the options, call it
+      setOptions(auxData);
+    }
+    setDataList(auxData); // set the list as updated
+  };
+
+  // verify if there is selected options every time the list is updated
+  React.useEffect(() => {
+    if (dataList.length > 0) { return }
+    if (setHasSelectedOptions) { // verify if there is selected options
+      let has = false; // start as false
+      dataList.forEach(child => {
+        if (child.selected) {
+          has = true; // became true if there is a selected option
+        }
+      });
+      setHasSelectedOptions(has);
+    }
+    // if there is selected options and the function to show the list is showing, show the list
+    if (dataList.length > 0 && setIsShowingList) {
+      setIsShowingList(true);
+    }
+  }, [dataList]);
+
+  // -- COMPONENTS --
+  // render the flatlist with the selected options on top
   const OptionsOnTop = () => {
     const selectedOptions = options.filter(option => option.selected === true); 
     return (
@@ -144,93 +275,7 @@ function SearchSelect({
     )
   };
 
-  React.useEffect(() => {
-    if (!dataList) {
-      return;
-    }
-
-    let has = false;
-    dataList.forEach(creator => {
-      if (creator.selected) {
-        has = true;
-      }
-    });
-    if (setHasSelectedOptions) {
-      setHasSelectedOptions(has);
-    }
-  }, [dataList]);
-
-  const handleSearch = (e: string) => {
-    setSearchText(e);
-    e = e.toLowerCase();
-    setHideOptionsOnTop(true);
-    if (!e) {
-      setDataList(false);
-      setCanAnimate(false);
-      if (setIsShowingList) {
-        setIsShowingList(false);
-      }
-    } else {
-      setHideOptionsOnTop(false);
-      const result = auxOptions.filter(op =>
-        op.label.toLowerCase().includes(e),
-      );
-      if (result?.length > 0) {
-        handleHasResult(result);
-      }
-    }
-  };
-
-  const handleHasResult = (result: Options[]) => {
-    setDataList(result);
-    if (setIsShowingList) {
-      setIsShowingList(true);
-    }
-  };
-
-  const handleClose = () => {
-    setDataList(false);
-    setCanAnimate(false);
-    if (setIsShowingList) {
-      setIsShowingList(false);
-    }
-    setHideOptionsOnTop(true);
-  };
-
-  const handleSetSelectedsItem = (index: any, item?: Options) => {
-    if (!dataList) {
-      return;
-    }
-
-    if (onSelectOption && item) {
-      onSelectOption(index, item)
-    }
-
-    if (!multipleSelect) {
-      return;
-    }
-
-    setHideOptionsOnTop(false);
-
-    let auxData: Options[] = [];
-    dataList.forEach(d => {
-      if (d.key == index) {
-        auxData.push({
-          ...d,
-          selected: !d.selected,
-        });
-      } else {
-        auxData.push(d);
-      }
-    });
-
-    if (setOptions) {
-      setOptions(auxData);
-      setAuxOptions(auxData);
-    }
-    setDataList(auxData);
-  };
-
+  // render the items of the list
   const RenderItem = (item: Options, index: any) => (
     <TouchableOpacity
       style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}
@@ -250,11 +295,14 @@ function SearchSelect({
     </TouchableOpacity>
   );
 
+  // render the list
   const ListComponent = () => (
     <Animated.View
       animation={animationList && canAnimate ? animationList : ''}
       onAnimationEnd={() => setCanAnimate(false)}>
       <FlatList
+        onEndReached={() => loadMoreItems()}
+        onEndReachedThreshold={0.5}
         keyboardShouldPersistTaps="always"
         data={dataList as any}
         extraData={dataList}
@@ -264,6 +312,7 @@ function SearchSelect({
     </Animated.View>
   );
 
+  // render the counter of selected options
   const SelectedOptionsCounter = () => (
     <View style={[s.counterStyle, counterContainerStyle]}>
       <Text style={[s.counterText, counterTextStyle]}>
@@ -280,10 +329,10 @@ function SearchSelect({
         {!hideOptionsOnTop && !!showSelectedOptionsOnTop && options.some(option => option.selected === true) && <OptionsOnTop />}
         <View style={{...s.inputContainer, ...searchContainerStyle}}>
           <View style={{paddingTop: wp('2%')}}>
-            {dataList && !!closeIcon ? (
+            {dataList.length > 0 && !!closeIcon ? (
               <TouchableOpacity
                 onPress={() => {
-                  if (dataList) {
+                  if (dataList.length > 0) {
                     handleClose();
                   }
                 }}>
@@ -317,7 +366,7 @@ function SearchSelect({
           />
           {!!showSelectedOptionsCounter && options.some(option => option.selected === true) && SelectedOptionsCounter()}
         </View>
-        {!!dataList && <ListComponent />}
+        {!!(dataList.length > 0) && <ListComponent />}
         </View>
     </Animated.View>
   );
