@@ -37,6 +37,7 @@
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#scroll-props">Props</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-how-to-contribuite">How to contribuite</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
@@ -50,8 +51,8 @@
 </br>
 
 <p align="center">
-  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
-  <img alt="iOS" width="300" src="./Gallery/iOS_Gif.gif">
+  <img alt="Android_MultipleSelect" width="300" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="Android" width="300" src="./Gallery/Android_Gif.gif">
 </p>
 
 </br>
@@ -60,7 +61,7 @@
 
 This project was made for my final paper in the Computer Science course at UFES (Federal University of Espírito Santo), where I created this public library to study the acceptance of the developer community with new proposals for reuse.
 
-Please leave a ***STAR*** on this [repository](https://github.com/Danilo-Js/react-native-search-select) and contribute to my work.
+Please leave a ***STAR*** at the [repository](https://github.com/Danilo-Js/react-native-search-select) and contribute to my work.
 
 ## :rocket: Getting Started
 
@@ -107,7 +108,6 @@ You can use to select multiple options, like this
 <View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
   <SearchSelect
     // configuration
-    placeholder="Search for options"
     multipleSelect={true}
     options={options}
     setOptions={setOptions}
@@ -116,24 +116,21 @@ You can use to select multiple options, like this
     // animation
     animationInput="bounceIn"
     animationList="fadeInUpBig"
-    // styling
-    searchTextColor="blue"
+    // stylingxw
+    placeholder="Search for options"
     // icon
     IconSource={Ionicons}
     searchIcon="ios-search-outline"
-    searchIconColor="black"
     closeIcon="ios-close-circle"
-    closeIconColor="blue"
     optionSelectedIcon="ios-checkbox"
-    optionSelectedIconColor="blue"
     closeTopOptionIcon="ios-close-circle-outline"
   />
 </View>
 ```
 
 <p align="center">
-  <img alt="iOS_MultipleSelect" width="300" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
-  <img alt="Android_MultipleSelect" width="300" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="iOS_MultipleSelect" width="300" heigh="600" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="Android_MultipleSelect" width="300" heigh="600" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
 </p>
 
 You can also use to perform an action when a option is selected, using `onSelectOption`
@@ -142,30 +139,28 @@ You can also use to perform an action when a option is selected, using `onSelect
 <View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
   <SearchSelect
     // configuration
-    placeholder="Search for options"
     multipleSelect={false}
     options={options}
-    onSelectOption={(index, option) => Alert.alert(option.label + ' selected!')}
+    onSelectOption={(index, option) =>
+      Alert.alert(`Option selected: ${option.label}`)
+    }
     // animation
     animationInput="bounceIn"
     animationList="fadeInUpBig"
     // styling
-    searchTextColor="blue"
+    placeholder="Search for options"
     // icon
     IconSource={Ionicons}
     searchIcon="ios-search-outline"
-    searchIconColor="black"
     closeIcon="ios-close-circle"
-    closeIconColor="blue"
     optionSelectedIcon="ios-checkbox"
-    optionSelectedIconColor="blue"
   />
 </View>
 ```
 
 <p align="center">
-  <img alt="iOS" width="300" src="./Gallery/iOS_Gif.gif">
-  <img alt="Android" width="300" src="./Gallery/Android_Gif.gif">
+  <img alt="iOS" width="300" heigh="600" src="./Gallery/iOS_Gif.gif">
+  <img alt="Android" width="300" heigh="600" src="./Gallery/Android_Gif.gif">
 </p>
 
 ## :scroll: Props
@@ -178,9 +173,11 @@ You can also use to perform an action when a option is selected, using `onSelect
 | options               | array of { key: string; label: string; selected: boolean } |   True   | array of items to search and select                                                                        |
 | setOptions            |                          function                          |  False   | function that set the value of options array                                                               |
 | multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
+| isPaginated        |                          Boolean                           |   False   | if the list is paginated (default is false)                                            |
+| pageSize        |                          Number                           |   False   | in case the list is paginated, what would be the number of items of every page                                               |
 | showSelectedOptionsOnTop      |                          Boolean                          |  False   | boolean value that says if the selected option should appear on the top of the bar    |
 | showSelectedOptionsCounter |                          Boolean                          |  False   | boolean value to show a counter of selected options. Shows nothing when there is no selected options.                               |
-| onSelectOption        |                          Boolean                           |  False   | if the search should allow to select multiple options or not. Use as (selectedIndex, selectedOption) => {} |
+| onSelectOption        |                          Function                           |  False   | function called when the option is selected. Use as (selectedIndex, selectedOption) => {} |
 | setIsShowingList      |                          function                          |  False   | function that sets a boolean value that says if the list is showing or not                                 |
 | setHasSelectedOptions |                          function                          |  False   | function that sets a boolean value that says if there is any option selected                               |
 
@@ -198,6 +195,10 @@ You can also use to perform an action when a option is selected, using `onSelect
 | optionsOnTopTextStyle             | TextStyle |  False   | style of the text in selected options in the top of the bar                                                                |
 | counterTextStyle        |  TextStyle   |  False   | style of the text of the selected options counter |
 | counterContainerStyle        |  ViewStyle   |  False   | style of the view of the selected options counter |
+| paginationWrapContainerStyle        |  ViewStyle   |  False   | style of the pagination container, applied into ListFooterComponentStyle and into the style of the view that wraps the component |
+| paginationComponentContainerStyle        |  ViewStyle   |  False   | style of the pagination container individual components, applied the views that wraps the TouchableOpacity component that changes the page, and into the View componenent that wraps the informs the current page  |
+| paginationComponentTextStyle        |  TextStyle   |  False   | style of every text that appears into the pagination component  |
+
 
 ### Animation props
 
@@ -223,6 +224,34 @@ You can also use to perform an action when a option is selected, using `onSelect
 | closeTopOptionIcon      |                                              String                                              | False | name of the icon that it will represent when an option at the top of the bar will be deleted                                          |
 | closeTopOptionIconSize  |                                              Number                                              |                False                | size of the icon the icon that it will represent when a selected option at the top of the bar will set as unselected |
 | closeTopOptionIconColor |                                              String                                              |                False                | color of the icon the icon that it will represent when a selected option at the top of the bar will set as unselected  |
+
+## :rocket: How to contribuite
+
+1) Clone the library repository
+
+```
+git clone https://github.com/Danilo-Js/react-native-search-select.git
+```
+
+2) Create a test project in the same folder where you cloned the repository
+
+```
+npx react-native init teste --template react-native-template-typescript
+```
+
+3) Install the library at "teste" by following the [Getting Started](#rocket-getting-started) steps
+
+4) You can test your changes by using the script below. It will compile all the changes and past at the project "teste"
+
+```
+yarn compile
+```
+
+5) Create your branch, commit and push your changes
+
+6) Wait for feedback approval
+
+
 ## :memo: License
 
 This project is under the MIT license. See the [LICENSE](https://github.com/Danilo-Js/react-native-search-select/blob/master/LICENSE) for more information.

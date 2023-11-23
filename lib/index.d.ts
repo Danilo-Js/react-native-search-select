@@ -16,6 +16,9 @@ interface SearchSelectProps {
     showSelectedOptionsCounter?: Boolean;
     isPaginated?: boolean;
     pageSize?: number;
+    paginationComponentTextStyle?: TextStyle;
+    paginationComponentContainerStyle?: ViewStyle;
+    paginationWrapContainerStyle?: ViewStyle;
     searchContainerStyle?: ViewStyle;
     itemListContainerStyle?: ViewStyle;
     optionsOnTopContainerStyle?: ViewStyle;
@@ -42,5 +45,5 @@ interface SearchSelectProps {
     closeTopOptionIconColor?: string;
     closeTopOptionIconSize?: number;
 }
-declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, showSelectedOptionsCounter, isPaginated, pageSize, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, counterTextStyle, counterContainerStyle, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): React.JSX.Element;
+declare function SearchSelect({ multipleSelect, onSelectOption, options, setOptions, showSelectedOptionsOnTop, setIsShowingList, setHasSelectedOptions, showSelectedOptionsCounter, isPaginated, pageSize, paginationComponentTextStyle, paginationComponentContainerStyle, paginationWrapContainerStyle, searchContainerStyle, itemListContainerStyle, optionsOnTopContainerStyle, inputStyle, optionsOnTopTextStyle, placeholder, placeholderTextColor, searchTextColor, counterTextStyle, counterContainerStyle, animationList, animationInput, IconSource, searchIcon, searchIconColor, searchIconSize, closeIcon, closeIconColor, closeIconSize, optionSelectedIcon, optionSelectedIconColor, optionSelectedIconSize, closeTopOptionIcon, closeTopOptionIconColor, closeTopOptionIconSize, }: SearchSelectProps): React.JSX.Element;
 export default SearchSelect;

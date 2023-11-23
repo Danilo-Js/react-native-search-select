@@ -12,6 +12,7 @@ export declare const s: {
         backgroundColor: string;
     };
     optionsOnTopText: {
+        maxWidth: number;
         fontWeight: "bold";
     };
     inputContainer: {
@@ -45,6 +46,7 @@ export declare const s: {
         marginTop: number;
     };
     itemText: {
+        maxWidth: number;
         fontSize: number;
         alignItems: "center";
         justifyContent: "center";
@@ -59,5 +61,24 @@ export declare const s: {
         fontWeight: "bold";
         fontSize: number;
         color: string;
+    };
+    paginationWrapContainer: {
+        flexDirection: "row";
+        alignItems: "center";
+        justifyContent: "center";
+        margin: number;
+    };
+    paginationComponentContainer: {
+        flexDirection: "row";
+        alignItems: "center";
+        justifyContent: "space-around";
+        backgroundColor: string;
+        borderRadius: number;
+        width: number;
+        height: number;
+    };
+    paginationComponentText: {
+        fontSize: number;
+        fontWeight: "bold";
     };
 };
