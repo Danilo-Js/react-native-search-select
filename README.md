@@ -51,8 +51,8 @@
 </br>
 
 <p align="center">
-  <img alt="Android_MultipleSelect" width="300" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
-  <img alt="Android" width="300" src="./Gallery/Android_Gif.gif">
+  <img alt="Android_MultipleSelect" width="300" src="./Gallery/Android_1.gif">
+  <img alt="Android" width="300" src="./Gallery/Android_2.gif">
 </p>
 
 </br>
@@ -71,96 +71,18 @@ Please leave a ***STAR*** at the [repository](https://github.com/Danilo-Js/react
 
 ## :information_source: Usage
 
-1. Import the library and your choosen icon source
-
-```js
-import SearchSelect from "react-native-search-select";
-import Ionicons from 'react-native-vector-icons/Ionicons';
-```
-
-2. Create the options state
-
-```js
-const [options, setOptions] = useState([
-  {
-    key: "0",
-    label: "Option 1",
-    selected: false,
-  },
-  {
-    key: "1",
-    label: "Option 2",
-    selected: false,
-  },
-  {
-    key: "2",
-    label: "Option 3",
-    selected: false,
-  },
-]);
-```
-
-3. Use the library
-
-You can use to select multiple options, like this
-
-```js
-<View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
-  <SearchSelect
-    // configuration
-    multipleSelect={true}
-    options={options}
-    setOptions={setOptions}
-    showSelectedOptionsOnTop={true}
-    showSelectedOptionsCounter={true}
-    // animation
-    animationInput="bounceIn"
-    animationList="fadeInUpBig"
-    // stylingxw
-    placeholder="Search for options"
-    // icon
-    IconSource={Ionicons}
-    searchIcon="ios-search-outline"
-    closeIcon="ios-close-circle"
-    optionSelectedIcon="ios-checkbox"
-    closeTopOptionIcon="ios-close-circle-outline"
-  />
-</View>
-```
+1. In [this example](https://github.com/react-native-search-select/UsageExamples/1), you can select several objects, also using the counter and the list of selected objects
 
 <p align="center">
-  <img alt="iOS_MultipleSelect" width="300" heigh="600" src="./Gallery/iOS_MultipleSelect_OptionsOnTop_Counter.gif">
-  <img alt="Android_MultipleSelect" width="300" heigh="600" src="./Gallery/Android_MultipleSelect_OptionsOnTop_Counter.gif">
+  <img alt="iOS_MultipleSelect" width="300" heigh="600" src="./Gallery/iOS_1.gif">
+  <img alt="Android_MultipleSelect" width="300" heigh="600" src="./Gallery/Android_1.gif">
 </p>
 
-You can also use to perform an action when a option is selected, using `onSelectOption`
-
-```js
-<View style={{flex: 1, paddingTop: 35, alignItems: 'center'}}>
-  <SearchSelect
-    // configuration
-    multipleSelect={false}
-    options={options}
-    onSelectOption={(index, option) =>
-      Alert.alert(`Option selected: ${option.label}`)
-    }
-    // animation
-    animationInput="bounceIn"
-    animationList="fadeInUpBig"
-    // styling
-    placeholder="Search for options"
-    // icon
-    IconSource={Ionicons}
-    searchIcon="ios-search-outline"
-    closeIcon="ios-close-circle"
-    optionSelectedIcon="ios-checkbox"
-  />
-</View>
-```
+2. In [this example](https://github.com/react-native-search-select/UsageExamples/2), you can select a single option in a simple way
 
 <p align="center">
-  <img alt="iOS" width="300" heigh="600" src="./Gallery/iOS_Gif.gif">
-  <img alt="Android" width="300" heigh="600" src="./Gallery/Android_Gif.gif">
+  <img alt="iOS" width="300" heigh="600" src="./Gallery/iOS_2.gif">
+  <img alt="Android" width="300" heigh="600" src="./Gallery/Android_2.gif">
 </p>
 
 ## :scroll: Props
