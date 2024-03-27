@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   FlatList,
   TextStyle,
+  Keyboard,
 } from 'react-native';
 
 import * as Animated from 'react-native-animatable';
@@ -15,9 +16,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
-import { s } from './styles';
-import colors from './colors';
 
 interface Options {
   key: string;
@@ -37,18 +35,19 @@ interface SearchSelectProps {
   showSelectedOptionsCounter?: Boolean;
   isPaginated?: boolean; 
   pageSize?: number; 
+  getNextPage?: Function;
   // styling
+  itemListContainerStyle?: ViewStyle;
+  itemListTextStyle?: TextStyle;
   paginationComponentTextStyle?: TextStyle;
   paginationComponentContainerStyle?: ViewStyle;
   paginationWrapContainerStyle?: ViewStyle;
   searchContainerStyle?: ViewStyle;
-  itemListContainerStyle?: ViewStyle;
   optionsOnTopContainerStyle?: ViewStyle;
   inputStyle?: ViewStyle;
   optionsOnTopTextStyle?: TextStyle;
   placeholder?: string;
   placeholderTextColor?: string;
-  searchTextColor?: string;
   counterTextStyle?: TextStyle,
   counterContainerStyle?: ViewStyle,
   // animation
@@ -65,9 +64,9 @@ interface SearchSelectProps {
   optionSelectedIcon: string;
   optionSelectedIconColor?: string;
   optionSelectedIconSize?: number;
-  closeTopOptionIcon: string;
-  closeTopOptionIconColor?: string;
-  closeTopOptionIconSize?: number;
+  closeOptionOnTopIcon: string;
+  closeOptionOnTopIconColor?: string;
+  closeOptionOnTopIconSize?: number;
 }
 
 function SearchSelect({
@@ -82,20 +81,21 @@ function SearchSelect({
   showSelectedOptionsCounter,
   isPaginated,
   pageSize,
+  getNextPage,
   // styling
-  paginationComponentTextStyle = {},
-  paginationComponentContainerStyle = {},
-  paginationWrapContainerStyle = {},
-  searchContainerStyle = {},
-  itemListContainerStyle = {},
-  optionsOnTopContainerStyle = {},
-  inputStyle = {},
-  optionsOnTopTextStyle = {},
   placeholder,
   placeholderTextColor,
-  searchTextColor,
-  counterTextStyle = {},
-  counterContainerStyle = {},
+  itemListContainerStyle = {}, // style of the View that wraps the result of the search
+  itemListTextStyle = {}, // style of the text of each option
+  searchContainerStyle = {}, // style of the View that wraps the searchBar
+  inputStyle = {}, // style of the TextInput
+  optionsOnTopContainerStyle = {}, // style of every view that wraps the selected option at the top of the
+  optionsOnTopTextStyle = {}, // style of the selected option text at the top of the list
+  counterTextStyle = {}, // style of the text of the selected options counter
+  counterContainerStyle = {}, // style of the view of the selected options counter
+  paginationComponentContainerStyle = {},
+  paginationComponentTextStyle = {},
+  paginationWrapContainerStyle = {},
   // animation
   animationList,
   animationInput,
@@ -110,9 +110,9 @@ function SearchSelect({
   optionSelectedIcon,
   optionSelectedIconColor,
   optionSelectedIconSize,
-  closeTopOptionIcon,
-  closeTopOptionIconColor,
-  closeTopOptionIconSize,
+  closeOptionOnTopIcon,
+  closeOptionOnTopIconColor,
+  closeOptionOnTopIconSize,
 }: SearchSelectProps) {
   // -- STATES --
   const [searchText, setSearchText] = React.useState(''); // state to handle the search text
@@ -181,12 +181,20 @@ function SearchSelect({
   };
 
   // function to load the previous page
-  const loadNextPage = () => {
-    if (!pageSize) return; // pageSize is required for the next verification
+  const loadNextPage = async () => {
+    if (!isPaginated || !pageSize) return; // continue only if the list is paginated
+    if (getNextPage && ((currentPage + 1) <= pageSize)) { // if there is a function to get the next page
+      setCurrentPage(currentPage + 1); // set the current page to the next page
+      let pagedData = await getNextPage(currentPage + 1); // get the data from next page
+      if (pagedData && pagedData.length > 0) { // if the data is not empty, add it to the list
+        setDataList(pagedData.filter((op: Options) => op.label.toLowerCase().includes(searchText)));
+      }
+      return;
+    }
     // if the list is less than the page size, do not continue or
     // if the next page is empty, do not continue
     if (dataList.length < pageSize || getDataByPage(getSearchResult(searchText), currentPage + 1).length === 0) return; 
-    setCurrentPage(currentPage + 1);
+    setCurrentPage(currentPage + 1); // set the current page to the next page
     setDataList(getDataByPage(getSearchResult(searchText), currentPage + 1));
   }
 
@@ -208,6 +216,7 @@ function SearchSelect({
 
   // function to close the list and the search
   const handleClose = () => {
+    Keyboard.dismiss();
     setSearchText(''); // set the search text to empty
     setIsSearchClosed(true); // close the list
     setCanAnimate(false); // set the animation to false
@@ -298,15 +307,15 @@ function SearchSelect({
           horizontal={true}
           keyExtractor={(item, i) => item.key + i}
           renderItem={({item}) => (
-            <View style={{...s.optionsOnTopView, ...optionsOnTopContainerStyle}}>
-              <Text numberOfLines={1} style={{...s.optionsOnTopText, ...optionsOnTopTextStyle}}>
+            <View style={optionsOnTopContainerStyle}>
+              <Text numberOfLines={1} style={optionsOnTopTextStyle}>
                 {item.label}{' '}
               </Text>
               <TouchableOpacity onPress={() => removeSelectedKey(item.key)}>
                 <IconSource
-                  name={closeTopOptionIcon}
-                  color={closeTopOptionIconColor ? closeTopOptionIconColor : colors.white}
-                  size={closeTopOptionIconSize ? closeTopOptionIconSize : wp('6%')}
+                  name={closeOptionOnTopIcon}
+                  color={closeOptionOnTopIconColor}
+                  size={closeOptionOnTopIconSize}
                 />
               </TouchableOpacity>
             </View>
@@ -319,16 +328,16 @@ function SearchSelect({
   // render the items of the list
   const RenderItem = (item: Options, index: any) => (
     <TouchableOpacity
-      style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}
+      style={itemListContainerStyle}
       onPress={() => handleSetSelectedsItem(item.key, item)}>
-      <Animated.View animation={animationList && canAnimate ? animationList : ''} style={[s.itemContainer, itemListContainerStyle, index === 0 && {marginTop: wp('2%')}]}>
-        <Text numberOfLines={1} style={[s.itemText, !!selectedKeys.some(e => e === item.key) && {paddingLeft: wp('3%')}]}>{item.label}</Text>
+      <Animated.View animation={animationList && canAnimate ? animationList : ''} style={itemListContainerStyle}>
+        <Text numberOfLines={1} style={[itemListTextStyle, !!selectedKeys.some(e => e === item.key) && {paddingLeft: wp('3%')}]}>{item.label}</Text>
         {!!selectedKeys.some(e => e === item.key) && (
           <View style={{flex: 1, alignItems: 'flex-end', paddingRight: wp('3%')}}>
             {!!optionSelectedIcon && <IconSource
               name={optionSelectedIcon}
-              color={optionSelectedIconColor ? optionSelectedIconColor : colors.white}
-              size={optionSelectedIconSize ? optionSelectedIconSize : wp('6%')}
+              color={optionSelectedIconColor}
+              size={optionSelectedIconSize}
             />}
           </View>
         )}
@@ -338,21 +347,21 @@ function SearchSelect({
 
   // component of the pagination
   const PaginationComponent = () => (
-    <View style={{...s.paginationWrapContainer, ...paginationWrapContainerStyle}}>
+    <View style={paginationWrapContainerStyle}>
       {currentPage > 1 && (
         <TouchableOpacity
-          style={{...s.paginationComponentContainer, ...paginationComponentContainerStyle}}
+          style={paginationComponentContainerStyle}
           onPress={() => loadPreviousPage()}>
-          <Text style={{...s.paginationComponentText, ...paginationComponentTextStyle}}>{'<'}</Text>
+          <Text style={paginationComponentTextStyle}>{'<'}</Text>
         </TouchableOpacity>
       )}
-      <View style={{...s.paginationComponentContainer, ...paginationComponentContainerStyle}}>
-        <Text style={{...s.paginationComponentText, ...paginationComponentTextStyle}}>{currentPage}</Text>
+      <View style={paginationComponentContainerStyle}>
+        <Text style={paginationComponentTextStyle}>{currentPage}</Text>
       </View>
       <TouchableOpacity
-        style={{...s.paginationComponentContainer, ...paginationComponentContainerStyle}}
+        style={paginationComponentContainerStyle}
         onPress={() => loadNextPage()}>
-          <Text style={{...s.paginationComponentText, ...paginationComponentTextStyle}}>{'>'}</Text>
+          <Text style={paginationComponentTextStyle}>{'>'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -369,7 +378,7 @@ function SearchSelect({
         extraData={selectedKeys.length}
         renderItem={({item, index}: any) => isSearchClosed ? null : RenderItem(item, index)}
         keyExtractor={(item: any) => item.key}
-        ListFooterComponentStyle={[s.paginationWrapContainer, paginationWrapContainerStyle]}
+        ListFooterComponentStyle={paginationWrapContainerStyle}
         ListFooterComponent={() => isPaginated && !isSearchClosed ? PaginationComponent() : null}
       />
     </Animated.View>
@@ -377,8 +386,8 @@ function SearchSelect({
 
   // render the counter of selected options
   const SelectedOptionsCounter = () => (
-    <View style={{...s.counterStyle, ...counterContainerStyle}}>
-      <Text style={{...s.counterText, ...counterTextStyle}}>
+    <View style={counterContainerStyle}>
+      <Text style={counterTextStyle}>
         {selectedKeys.length}
       </Text>
     </View>
@@ -387,44 +396,34 @@ function SearchSelect({
   return (
     <Animated.View
       animation={animationInput && canAnimate ? animationInput : ''}
-      style={{flex: 1, flexDirection: 'column', ...searchContainerStyle}}>
+      style={searchContainerStyle}>
       <View>
         {!hideOptionsOnTop && !!showSelectedOptionsOnTop && selectedKeys.length > 0 && <OptionsOnTop />}
-        <View style={{...s.inputContainer, ...searchContainerStyle}}>
-          <View style={{paddingTop: wp('2%')}}>
+        <View style={searchContainerStyle}>
+          <View style={{paddingTop: wp('3%')}}>
             {dataList.length > 0 && !!closeIcon ? (
               <TouchableOpacity
-                onPress={() => {
-                  if (dataList.length > 0) {
-                    handleClose();
-                  }
-                }}>
+                onPress={() => handleClose()}>
                 <IconSource
                   name={closeIcon}
-                  color={closeIconColor ? closeIconColor : colors.mainOne}
-                  size={closeIconSize ? closeIconSize : wp('6%')}
+                  color={closeIconColor}
+                  size={closeIconSize}
                 />
               </TouchableOpacity>
             ) : !!searchIcon && (
               <IconSource
                 name={searchIcon}
-                color={searchIconColor ? searchIconColor : colors.mainOne}
-                size={searchIconSize ? searchIconSize : wp('6%')}
+                color={searchIconColor}
+                size={searchIconSize}
               />
             )}
           </View>
           <TextInput
             onChangeText={(text: string) => handleSearch(text)}
-            style={{
-              ...s.inputStyle,
-              ...inputStyle,
-              color: searchTextColor ? searchTextColor : colors.text,
-            }}
+            style={inputStyle}
             value={searchText}
             placeholder={placeholder ? placeholder : ''}
-            placeholderTextColor={
-              placeholderTextColor ? placeholderTextColor : colors.text
-            }
+            placeholderTextColor={placeholderTextColor}
             underlineColorAndroid={'transparent'}
           />
           {!!showSelectedOptionsCounter && selectedKeys.length > 0 && SelectedOptionsCounter()}

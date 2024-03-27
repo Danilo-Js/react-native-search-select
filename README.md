@@ -97,6 +97,7 @@ Please leave a ***STAR*** at the [repository](https://github.com/Danilo-Js/react
 | multipleSelect        |                          Boolean                           |   True   | if the search should allow to select multiple options or not                                               |
 | isPaginated        |                          Boolean                           |   False   | if the list is paginated (default is false)                                            |
 | pageSize        |                          Number                           |   False   | in case the list is paginated, what would be the number of items of every page                                               |
+| getNextPage        |                          Function                           |   False   | receives the page as a parameter and returns an array with the objects on that page. Without this function, it is understood that the objects on this page are already in the Options array                                               |
 | showSelectedOptionsOnTop      |                          Boolean                          |  False   | boolean value that says if the selected option should appear on the top of the bar    |
 | showSelectedOptionsCounter |                          Boolean                          |  False   | boolean value to show a counter of selected options. Shows nothing when there is no selected options.                               |
 | onSelectOption        |                          Function                           |  False   | function called when the option is selected. Use as (selectedIndex, selectedOption) => {} |
@@ -109,12 +110,12 @@ Please leave a ***STAR*** at the [repository](https://github.com/Danilo-Js/react
 | Property               |   Type    | Required | Description                                                                                     |
 | ---------------------- | :-------: | :------: | ----------------------------------------------------------------------------------------------- |
 | placeholderTextColor   |  String   |  False   | color of the placeholder of the searchbar TextInput                                             |
-| searchTextColor        |  String   |  False   | color of the text of the serch in the serachbar TextInput. It can also be set in the inputStyle |
 | searchContainerStyle   | ViewStyle |  False   | style of the View that wraps the searchBar                                                      |
-| itemListContainerStyle | ViewStyle |  False   | style of the View that wraps individually the result of the search                              |
-| inputStyle             | ViewStyle |  False   | style of the searchbar TextInput                                                                |
+| itemListContainerStyle | ViewStyle |  False   | style of the View that wraps the result of the search                              |
+| itemListTextStyle | TextStyle |  False   | style of the text of each option                              |
+| inputStyle             | ViewStyle |  False   | style of the TextInput                                                                |
 | optionsOnTopContainerStyle             | ViewStyle |  False   | style of every view that wraps the selected option at the top of the bar                                                                |
-| optionsOnTopTextStyle             | TextStyle |  False   | style of the text in selected options in the top of the bar                                                                |
+| optionsOnTopTextStyle             | TextStyle |  False   | style of the selected option text at the top of the list                                                                |
 | counterTextStyle        |  TextStyle   |  False   | style of the text of the selected options counter |
 | counterContainerStyle        |  ViewStyle   |  False   | style of the view of the selected options counter |
 | paginationWrapContainerStyle        |  ViewStyle   |  False   | style of the pagination container, applied into ListFooterComponentStyle and into the style of the view that wraps the component |
