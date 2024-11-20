@@ -1,6 +1,6 @@
 {
   "name": "react-native-search-select",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "An animated searchbar component so you can search and select objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

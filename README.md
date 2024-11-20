@@ -64,7 +64,10 @@ This project was made for my final paper in the Computer Science course at UFES 
 
 1. Install [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons#installation) along with the icon sources you want to use. In the main example, we use the `Ionicons` source. You can browse all available icon sources and their icons [here](https://oblador.github.io/react-native-vector-icons/). If you're unsure which sources you'll need, consider installing all icon sources to cover potential requirements.
 
-2. Install this library. You can use `$ yarn add react-native-search-select` or `$ npm install react-native-search-select`
+2. Install a library to handle responsiveness. The usage examples rely on [react-native-responsive-screen](https://github.com/marudy/react-native-responsive-screen). You can install it using `$ yarn add react-native-responsive-screen` or `$ npm install react-native-responsive-screen`
+If you prefer another way to handle responsiveness, feel free to skip this step. However, you will need to adapt the usage example you choose to match your setup.
+
+1. Install this library. You can use `$ yarn add react-native-search-select` or `$ npm install react-native-search-select`
 
 ## :information_source: Usage
 

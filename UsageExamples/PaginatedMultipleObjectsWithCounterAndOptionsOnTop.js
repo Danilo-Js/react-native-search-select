@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import SearchSelect from "react-native-search-select";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -27,57 +26,48 @@ const App = ({
   const [options, setOptions] = useState(initialOptions);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingTop: 35,
-        alignItems: "center",
-        backgroundColor: "#FFFFFF",
-      }}
-    >
-      <SearchSelect
-        // configuration
-        multipleSelect={true}
-        options={options}
-        setOptions={setOptions}
-        showSelectedOptionsOnTop={true}
-        showSelectedOptionsCounter={true}
-        isPaginated={isPaginated} // Allow user to override
-        pageSize={pageSize} // Allow user to override
-        // animation
-        animationInput="bounceIn"
-        animationList="fadeInUpBig"
-        // styling
-        placeholder="Search for options"
-        placeholderTextColor="#333333"
-        itemListContainerStyle={s.itemListContainerStyle} // renderItem (search result)
-        itemListTextStyle={s.itemListTextStyle}
-        searchContainerStyle={s.searchContainerStyle} // searchbar
-        inputStyle={s.inputStyle}
-        optionsOnTopContainerStyle={s.optionsOnTopContainerStyle} // options on top (selected options at the top of the list)
-        optionsOnTopTextStyle={s.optionsOnTopTextStyle}
-        counterContainerStyle={s.counterContainerStyle} // options counter
-        counterTextStyle={s.counterTextStyle}
-        paginationWrapContainerStyle={s.paginationWrapContainerStyle} // pagination
-        paginationComponentContainerStyle={s.paginationComponentContainerStyle}
-        paginationComponentTextStyle={s.paginationComponentTextStyle}
-        // icon
-        IconSource={Ionicons}
-        searchIcon="ios-search-outline" // search icon
-        searchIconColor="#333333"
-        searchIconSize={widthPercentageToDP("6%")}
-        closeIcon="ios-close-circle" // close icon
-        closeIconColor="#333333"
-        closeIconSize={widthPercentageToDP("6%")}
-        optionSelectedIcon="checkmark-outline" // option selected icon
-        optionSelectedIconColor="#efefef"
-        optionSelectedIconSize={widthPercentageToDP("6%")}
-        closeOptionOnTopIcon="ios-close-circle-outline" // close top option icon
-        closeOptionOnTopIconColor="#efefef"
-        closeOptionOnTopIconSize={widthPercentageToDP("6%")}
-        {...props} // Spread user-provided props to allow overrides
-      />
-    </View>
+    <SearchSelect
+      // configuration
+      multipleSelect={true}
+      options={options}
+      setOptions={setOptions}
+      showSelectedOptionsOnTop={true}
+      showSelectedOptionsCounter={true}
+      isPaginated={isPaginated} // Allow user to override
+      pageSize={pageSize} // Allow user to override
+      // animation
+      animationInput="bounceIn"
+      animationList="fadeInUpBig"
+      // styling
+      placeholder="Search for options"
+      placeholderTextColor="#333333"
+      itemListContainerStyle={s.itemListContainerStyle} // renderItem (search result)
+      itemListTextStyle={s.itemListTextStyle}
+      searchContainerStyle={s.searchContainerStyle} // searchbar
+      inputStyle={s.inputStyle}
+      optionsOnTopContainerStyle={s.optionsOnTopContainerStyle} // options on top (selected options at the top of the list)
+      optionsOnTopTextStyle={s.optionsOnTopTextStyle}
+      counterContainerStyle={s.counterContainerStyle} // options counter
+      counterTextStyle={s.counterTextStyle}
+      paginationWrapContainerStyle={s.paginationWrapContainerStyle} // pagination
+      paginationComponentContainerStyle={s.paginationComponentContainerStyle}
+      paginationComponentTextStyle={s.paginationComponentTextStyle}
+      // icon
+      IconSource={Ionicons}
+      searchIcon="ios-search-outline" // search icon
+      searchIconColor="#333333"
+      searchIconSize={widthPercentageToDP("6%")}
+      closeIcon="ios-close-circle" // close icon
+      closeIconColor="#333333"
+      closeIconSize={widthPercentageToDP("6%")}
+      optionSelectedIcon="checkmark-outline" // option selected icon
+      optionSelectedIconColor="#efefef"
+      optionSelectedIconSize={widthPercentageToDP("6%")}
+      closeOptionOnTopIcon="ios-close-circle-outline" // close top option icon
+      closeOptionOnTopIconColor="#efefef"
+      closeOptionOnTopIconSize={widthPercentageToDP("6%")}
+      {...props} // Spread user-provided props to allow overrides
+    />
   );
 };
 
