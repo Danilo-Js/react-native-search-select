@@ -1,6 +1,6 @@
 ## :information_source: Usage Examples
 
-### 1. [Simple Select](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/SimpleSelect.tsx)
+### 1. [Simple Select](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/SimpleSelect.js)
 
 Easily select a single option with this simple setup.
 
@@ -12,7 +12,7 @@ Easily select a single option with this simple setup.
 
 ---
 
-### 2. [Multiple Selection with Counter and Options on Top](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/MultipleObjectsWithCounterAndOptionsOnTop.tsx)
+### 2. [Multiple Selection with Counter and Options on Top](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/MultipleObjectsWithCounterAndOptionsOnTop.js)
 
 Select multiple items, with a counter to track selected objects and an option to display selected items at the top of the list.
 
@@ -24,7 +24,7 @@ Select multiple items, with a counter to track selected objects and an option to
 
 ---
 
-### 3. [Paginated Multiple Selection with Counter and Options on Top](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/PaginatedMultipleObjectsWithCounterAndOptionsOnTop.tsx)
+### 3. [Paginated Multiple Selection with Counter and Options on Top](https://github.com/Danilo-Js/react-native-search-select/blob/main/UsageExamples/PaginatedMultipleObjectsWithCounterAndOptionsOnTop.js)
 
 Select multiple items, with pagination and a counter to track selected objects and an option to display selected items at the top of the list.
 

@@ -44,14 +44,11 @@
 </br>
 
 <div style="text-align: center;">
-  <div style="background-color: black; display: inline-block; padding: 10px; margin: 5px;">
-    <img alt="Android_SimpleSelect" width="300" src="./Gallery/Android_SimpleSelect.gif">
+  <div style="background-color: black; display: inline-block; padding: 20px; margin: 5px;">
+    <img alt="Android_SimpleSelect" width="200" src="./Gallery/Android_SimpleSelect.gif">
   </div>
-  <div style="background-color: black; display: inline-block; padding: 10px; margin: 5px;">
-    <img alt="Android_MultipleObjectsWithCounterAndOptionsOnTop" width="300" src="./Gallery/Android_MultipleObjectsWithCounterAndOptionsOnTop.gif">
-  </div>
-  <div style="background-color: black; display: inline-block; padding: 10px; margin: 5px;">
-    <img alt="Android_PaginatedMultipleObjectsWithCounterAndOptionsOnTop" width="300" src="./Gallery/Android_PaginatedMultipleObjectsWithCounterAndOptionsOnTop.gif">
+  <div style="background-color: black; display: inline-block; padding: 20px; margin: 5px;">
+    <img alt="Android_MultipleObjectsWithCounterAndOptionsOnTop" width="200" src="./Gallery/Android_MultipleObjectsWithCounterAndOptionsOnTop.gif">
   </div>
 </div>
 
